@@ -31,7 +31,7 @@ public class AppService extends Service
     public void onCreate()
     {
         telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        listenerManager = new CallListenerManager();
+        listenerManager = new CallListenerManager(this);
         telephonyManager.listen(listenerManager,PhoneStateListener.LISTEN_CALL_STATE);
     }
 
