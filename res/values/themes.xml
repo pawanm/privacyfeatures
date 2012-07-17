@@ -1,0 +1,18 @@
+<resources>
+    <style name="TalkToTheme" parent="android:Theme">
+        <item name="android:windowTitleSize">48dip</item>
+        <item name="android:colorBackground">#CCCCCC</item>
+        <item name="android:editTextStyle">@style/ics_edittext</item>
+        <item name="android:spinnerStyle">@style/ics_spinner</item>
+        <item name="android:buttonStyle">@style/btn_black</item>
+        <item name="android:imageButtonStyle">@style/btn_black</item>
+    </style>
+
+    <style name="TalkToThemeNoActionBar" parent="android:Theme.NoTitleBar">
+        <item name="android:colorBackground">#CCCCCC</item>
+        <item name="android:editTextStyle">@style/ics_edittext</item>
+        <item name="android:spinnerStyle">@style/ics_spinner</item>
+        <item name="android:buttonStyle">@style/btn_black</item>
+        <item name="android:imageButtonStyle">@style/btn_black</item>
+    </style>
+</resources>

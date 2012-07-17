@@ -1,0 +1,108 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/action_bar_height">
+
+    <LinearLayout android:id="@+id/action_bar_normal_view"
+                  android:layout_height="fill_parent"
+                  android:layout_width="fill_parent">
+
+        <LinearLayout
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_width="0dp">
+            <LinearLayout
+                    android:id="@+id/action_bar_home_view"
+                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/action_bar_item_background_selector">
+
+                <ImageView
+                        android:id="@+id/back_triangle"
+                        android:layout_height="fill_parent"
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/back_triangle"
+                        android:visibility="gone"
+                        android:gravity="center_vertical"
+                        />
+
+                <ImageView
+                        android:id="@+id/action_bar_icon"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                <RelativeLayout
+                        android:layout_height="fill_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        >
+                    <TextView
+                            android:id="@+id/action_bar_title"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:textSize="18sp"
+                            android:singleLine="true"
+                            />
+
+                    <TextView
+                            android:id="@+id/action_bar_subtitle"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:textSize="14sp"
+                            android:singleLine="true"
+                            android:visibility="gone"
+                            android:layout_below="@id/action_bar_title"
+                            />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/options_menu_container"
+                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                />
+    </LinearLayout>
+
+    <RelativeLayout android:id="@+id/action_bar_action_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:visibility="gone">
+
+        <ImageView android:id="@+id/tick"
+                   android:layout_height="fill_parent"
+                   android:layout_width="@dimen/action_bar_menu_item_width"
+                   android:src="@drawable/cab_tick"
+                   android:background="@drawable/action_bar_item_background_selector"/>
+
+        <ImageView android:id="@+id/separator"
+                   android:layout_height="fill_parent"
+                   android:layout_width="wrap_content"
+                   android:src="@drawable/tab_separator"
+                   android:layout_toRightOf="@id/tick"/>
+
+        <TextView android:id="@+id/cab_title"
+                  android:layout_height="wrap_content"
+                  android:layout_width="fill_parent"
+                  android:singleLine="true"
+                  android:textSize="18sp"
+                  android:text="Title"
+                  android:layout_marginLeft="12dp"
+                  android:layout_toRightOf="@id/separator"/>
+
+        <LinearLayout
+                android:id="@+id/cab_menu_container"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"
+                android:layout_toRightOf="@id/cab_title"
+                android:gravity="right"
+                />
+    </RelativeLayout>
+
+</LinearLayout>

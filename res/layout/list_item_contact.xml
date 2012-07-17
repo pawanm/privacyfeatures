@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/contact_item_height"
+        >
+
+    <TextView android:id="@+id/contactName"
+              android:layout_marginTop="8dp"
+              android:layout_marginRight="100dp"
+              android:textStyle="bold"
+              android:layout_marginLeft="23dp"
+              android:text="Contact Name"
+              style="@style/roster_item_name"
+            />
+
+    <TextView android:id="@+id/contactPhone"
+              android:layout_marginRight="100dp"
+              android:layout_marginLeft="23dp"
+              android:layout_below="@id/contactName"
+              android:text="Phone"
+              style="@style/roster_item_subtext"
+            />
+
+</RelativeLayout>
