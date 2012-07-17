@@ -1,3 +1,5 @@
 package com.android.privacycontrol.conroller;
-public class MessageListenerManager {
+
+public class MessageListenerManager
+{
 }
