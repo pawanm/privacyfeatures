@@ -2,6 +2,7 @@ package com.android.privacycontrol.conroller;
 
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import com.android.privacycontrol.utils.Logging;
 
 public class CallListenerManager extends PhoneStateListener
 {
@@ -10,15 +11,15 @@ public class CallListenerManager extends PhoneStateListener
     {
         if(TelephonyManager.CALL_STATE_RINGING == state)
         {
-            //Incoming call handling
+            Logging.debug("CallListener: Incoming");
         }
         if(TelephonyManager.CALL_STATE_OFFHOOK == state)
         {
-            //Outgoing call handling
+            Logging.debug("CallListener: Outgoing");
         }
         if(TelephonyManager.CALL_STATE_IDLE == state)
         {
-            //Device back to normal state (not in a call)
+            Logging.debug("CallListener: Idle");
         }
     }
 }

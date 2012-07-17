@@ -12,6 +12,10 @@
 
 
     <application android:label="@string/app_name">
+
+        <service android:name="com.android.privacycontrol.services.AppService" android:label="AppService"/>
+
+
         <activity android:name=".ui.StartUpActivity"
                   android:label="@string/app_name">
             <intent-filter>
