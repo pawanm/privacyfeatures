@@ -138,7 +138,7 @@ public class ActionBarView
         }
         catch (PackageManager.NameNotFoundException ex)
         {
-            //Utils.logD(LOGTAG, "Icon not found: " + name.getClassName());
+
         }
         return null;
     }
@@ -153,7 +153,7 @@ public class ActionBarView
         Drawable icon = getActivityIcon();
         if (icon == null)
         {
-            icon = mActivity.getResources().getDrawable(R.drawable.app_icon);
+            icon = mActivity.getResources().getDrawable(R.drawable.alert);
         }
         setIcon(icon);
 
