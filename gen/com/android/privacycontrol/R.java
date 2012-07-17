@@ -297,11 +297,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int action_bar_view=0x7f030000;
         public static final int activity_contacts=0x7f030001;
         public static final int activity_preferences=0x7f030002;
-        public static final int activity_startup=0x7f030003;
-        public static final int list_item_contact=0x7f030004;
-        public static final int seprated_list_view_header=0x7f030005;
-        public static final int tab_all_contacts=0x7f030006;
-        public static final int tab_layout=0x7f030007;
+        public static final int list_item_contact=0x7f030003;
+        public static final int seprated_list_view_header=0x7f030004;
+        public static final int tab_all_contacts=0x7f030005;
+        public static final int tab_layout=0x7f030006;
     }
     public static final class string {
         public static final int app_name=0x7f070000;
