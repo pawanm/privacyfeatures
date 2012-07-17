@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
 import com.android.privacycontrol.R;
-import compatibility.actionbar.ActionBarHelper;
 import compatibility.actionbar.ActionBarWithFragments;
 import compatibility.adapters.PagerAdapter;
 import compatibility.tabs.TabDetail;
@@ -21,7 +20,6 @@ public class ContactsActivity extends ActionBarWithFragments implements TabHost.
     private TabHost mTabHost;
     private ViewPager mViewPager;
     List<Fragment> fragments = new Vector<Fragment>();
-    private ActionBarHelper actionBarHelper;
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -37,7 +35,6 @@ public class ContactsActivity extends ActionBarWithFragments implements TabHost.
             mTabHost.setCurrentTabByTag(savedInstanceState.getString("currentTab"));
         }
 
-        actionBarHelper = getActionBarHelper();
         onPageSelected(0);
     }
 
@@ -45,7 +42,6 @@ public class ContactsActivity extends ActionBarWithFragments implements TabHost.
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        //actionBarHelper.setDisplayShowTitleEnabled(false);
     }
 
     private void initTabHost(Bundle args)

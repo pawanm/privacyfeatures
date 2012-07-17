@@ -20,7 +20,7 @@ public class ActionBarICS extends ActionBarHoneycomb
     @Override
     public void onPostCreate(Bundle savedInstanceState)
     {
-        //mActivity.getActionBar().setHomeButtonEnabled(false);
+        mActivity.getActionBar().setHomeButtonEnabled(false);
     }
 
 }
