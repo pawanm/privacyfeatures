@@ -1,15 +1,20 @@
 package com.android.privacycontrol.services;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import com.android.privacycontrol.conroller.CallListenerManager;
 
 public class AppService extends Service
 {
     private final IBinder binder = new LocalBinder();
-    private static CallListenerManager callListener;
+    TelephonyManager telephonyManager;
+    CallListenerManager listenerManager;
+    PhoneStateListener listener;
 
     private class LocalBinder extends Binder
     {
@@ -25,7 +30,9 @@ public class AppService extends Service
     @Override
     public void onCreate()
     {
-        callListener = new CallListenerManager();
+        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        listenerManager = new CallListenerManager();
+        telephonyManager.listen(listenerManager,PhoneStateListener.LISTEN_CALL_STATE);
     }
 
     @Override

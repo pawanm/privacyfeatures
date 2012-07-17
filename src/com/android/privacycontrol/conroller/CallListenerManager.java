@@ -11,7 +11,7 @@ public class CallListenerManager extends PhoneStateListener
     {
         if(TelephonyManager.CALL_STATE_RINGING == state)
         {
-            Logging.debug("CallListener: Incoming");
+            Logging.debug("CallListener: Incoming call from " + incomingNumber);
         }
         if(TelephonyManager.CALL_STATE_OFFHOOK == state)
         {
