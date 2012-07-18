@@ -42,7 +42,6 @@ public class ContactManager
             return allContactsList;
         }
 
-        Logging.debug("getting contacts from store");
         allContactsList = contactStore.getDeviceContacts();
 
         if (allContactsList.size() == 0)
