@@ -35,6 +35,7 @@ public class CallListenerManager extends PhoneStateListener
                 return;
 
             currentRingerMode = audioStateManager.getRingerMode();
+            Logging.debug("CurrentRingerMode: " + currentRingerMode);
             audioStateManager.changeRingerMode(code);
         }
         if(TelephonyManager.CALL_STATE_OFFHOOK == state)
@@ -45,6 +46,7 @@ public class CallListenerManager extends PhoneStateListener
         {
             Logging.debug("CallListener: Idle");
             audioStateManager.resetRingerMode(currentRingerMode);
+            Logging.debug("Ringer reset to: " + currentRingerMode);
         }
     }
 
