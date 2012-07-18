@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/contacts_menu_displmay_mode"
+          android:icon="@drawable/menu_pendingrequest"
+          android:title="@string/menu_contact_display_mode"
+          android:showAsAction="always"
+            />
+
+    <item android:id="@+id/contacts_menu_preferences"
+          android:icon="@drawable/menu_acceptall"
+          android:title="@string/menu_contact_preferences"
+          android:showAsAction="always"
+            />
+
+
+</menu>

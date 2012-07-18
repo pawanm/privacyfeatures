@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.privacycontrol.R;
 import com.android.privacycontrol.entities.DeviceContact;
-import com.android.privacycontrol.utils.utils;
+import com.android.privacycontrol.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,8 +70,8 @@ public class AllContactsAdapter extends BaseAdapter
 
         holder.contactName.setText(entry.getContactName());
         holder.contactPhone.setText(entry.getContactNumber());
-        //holder.contactState.setBackgroundResource(utils.getColorForContactState(entry.getContactState()));
-        holder.contactState.setBackgroundColor(utils.getColorForContactState(entry.getContactState()));
+        //holder.contactState.setBackgroundResource(Utils.getColorForContactState(entry.getContactState()));
+        holder.contactState.setBackgroundColor(Utils.getColorForContactState(entry.getContactState()));
         return convertView;
     }
 

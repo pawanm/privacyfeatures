@@ -236,11 +236,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int contactState=0x7f0a000f;
         public static final int contactsLayoutView=0x7f0a000c;
         public static final int contactsList=0x7f0a000d;
+        public static final int contacts_menu_displmay_mode=0x7f0a0015;
+        public static final int contacts_menu_preferences=0x7f0a0016;
         public static final int list_header_title=0x7f0a0014;
         public static final int loading_contact=0x7f0a0012;
-        public static final int menu_make_favourite=0x7f0a0015;
-        public static final int menu_make_restricted=0x7f0a0016;
-        public static final int menu_reset=0x7f0a0017;
+        public static final int menu_make_favourite=0x7f0a0017;
+        public static final int menu_make_restricted=0x7f0a0018;
+        public static final int menu_reset=0x7f0a0019;
         public static final int options_menu_container=0x7f0a0006;
         public static final int progressbar_view=0x7f0a000e;
         public static final int roster_tab_progress_text=0x7f0a0013;
@@ -256,11 +258,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int seprated_list_view_header=0x7f030005;
     }
     public static final class menu {
-        public static final int contacts_context_menu=0x7f090000;
+        public static final int contacts_activity_menu=0x7f090000;
+        public static final int contacts_context_menu=0x7f090001;
     }
     public static final class string {
         public static final int app_name=0x7f070000;
         public static final int loading_contacts=0x7f070001;
+        public static final int menu_contact_display_mode=0x7f070005;
+        public static final int menu_contact_preferences=0x7f070006;
         public static final int menu_make_favourite=0x7f070002;
         public static final int menu_make_reset=0x7f070004;
         public static final int menu_make_restricted=0x7f070003;

@@ -5,5 +5,8 @@
     <string name="menu_make_favourite">Add to favourites</string>
     <string name="menu_make_restricted">Add to restricted</string>
     <string name="menu_make_reset">Reset contact</string>
+    <string name="menu_contact_display_mode">Filter</string>
+    <string name="menu_contact_preferences">Preferences</string>
+
 
 </resources>

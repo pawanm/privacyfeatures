@@ -2,7 +2,7 @@ package com.android.privacycontrol.utils;
 
 import com.android.privacycontrol.R;
 
-public class utils
+public class Utils
 {
     public static int getColorForContactState(int contactState)
     {
