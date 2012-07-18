@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import com.android.privacycontrol.R;
 import com.android.privacycontrol.adapters.AllContactsAdapter;
@@ -19,6 +20,7 @@ public class AllContactsFragment extends Fragment
     private ListView contactList;
     private View tabAllContacts;
     private View contactsLayoutView;
+    private LinearLayout tempView;
     private ContactManager contactManager;
 
     @Override
@@ -58,10 +60,12 @@ public class AllContactsFragment extends Fragment
         tabAllContacts = getActivity().getLayoutInflater().inflate(R.layout.tab_all_contacts, null, false);
 
         contactsLayoutView = tabAllContacts.findViewById(R.id.contactsLayoutView);
+        tempView = (LinearLayout) tabAllContacts.findViewById(R.id.temp_view);
         contactList = (ListView) contactsLayoutView.findViewById(R.id.contactsList);
 
         allContactsAdapter = new AllContactsAdapter(this.getActivity());
         contactList.setAdapter(allContactsAdapter);
+        showProgressBar(true);
         refreshList();
     }
 
@@ -86,11 +90,29 @@ public class AllContactsFragment extends Fragment
             {
                 allContactsAdapter.setContacts(deviceContacts);
                 allContactsAdapter.notifyDataSetChanged();
-                contactList.setVisibility(View.VISIBLE);
+                showProgressBar(false);
+
             }
         };
 
         getActivity().runOnUiThread(t);
 
     }
+
+    private void showProgressBar(boolean flag)
+    {
+        if (flag)
+        {
+            contactsLayoutView.setVisibility(View.GONE);
+            tempView.setVisibility(View.VISIBLE);
+            tempView.addView(getActivity().getLayoutInflater().inflate(R.layout.progress_bar, tempView, false));
+        } else
+        {
+            contactsLayoutView.setVisibility(View.VISIBLE);
+            tempView.setVisibility(View.GONE);
+
+        }
+    }
+
+
 }

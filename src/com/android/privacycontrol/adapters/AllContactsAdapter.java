@@ -73,7 +73,6 @@ public class AllContactsAdapter extends BaseAdapter
     public void setContacts(List<DeviceContact> dataset)
     {
         contacts = dataset;
-        notifyDataSetChanged();
     }
 
     public static class ViewHolder

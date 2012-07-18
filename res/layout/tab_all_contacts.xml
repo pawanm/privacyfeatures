@@ -20,5 +20,12 @@
                 style="@style/contact_list"/>
 
     </LinearLayout>
+
+    <LinearLayout android:id="@+id/temp_view"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:orientation="vertical"
+                  android:gravity="center"
+                  android:layout_gravity="center"/>
 </LinearLayout>
 

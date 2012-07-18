@@ -233,13 +233,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int cab_title=0x7f09000a;
         public static final int contactName=0x7f09000d;
         public static final int contactPhone=0x7f09000e;
-        public static final int contactsLayoutView=0x7f090010;
-        public static final int contactsList=0x7f090011;
-        public static final int list_header_title=0x7f09000f;
+        public static final int contactsLayoutView=0x7f090012;
+        public static final int contactsList=0x7f090013;
+        public static final int list_header_title=0x7f090011;
+        public static final int loading_contact=0x7f09000f;
         public static final int options_menu_container=0x7f090006;
+        public static final int roster_tab_progress_text=0x7f090010;
         public static final int separator=0x7f090009;
+        public static final int temp_view=0x7f090014;
         public static final int tick=0x7f090008;
-        public static final int title=0x7f090012;
+        public static final int title=0x7f090015;
         public static final int viewpager=0x7f09000c;
     }
     public static final class layout {
@@ -247,12 +250,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_contacts=0x7f030001;
         public static final int activity_preferences=0x7f030002;
         public static final int list_item_contact=0x7f030003;
-        public static final int seprated_list_view_header=0x7f030004;
-        public static final int tab_all_contacts=0x7f030005;
-        public static final int tab_layout=0x7f030006;
+        public static final int progress_bar=0x7f030004;
+        public static final int seprated_list_view_header=0x7f030005;
+        public static final int tab_all_contacts=0x7f030006;
+        public static final int tab_layout=0x7f030007;
     }
     public static final class string {
         public static final int app_name=0x7f070000;
+        public static final int loading_contacts=0x7f070001;
     }
     public static final class style {
         public static final int AccountItem=0x7f080006;
