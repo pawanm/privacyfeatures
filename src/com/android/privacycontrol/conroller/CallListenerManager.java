@@ -46,7 +46,8 @@ public class CallListenerManager extends PhoneStateListener
         List<DeviceContact> list = contactManager.getRestrictedContactList();
         for(DeviceContact contact: list)
         {
-            if(incomingNo.contains(contact.getContactNumber()))
+            Logging.debug(contact.getContactLastDigitsFromNumber() + "xxxxx");
+            if(incomingNo.contains(contact.getContactLastDigitsFromNumber()))
             {
                 return -1;
             }

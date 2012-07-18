@@ -6,6 +6,7 @@ public class DeviceContact
     private String contactId;
     private String contactName;
     private String contactNumber;
+    private String contactLastDigitsFromNumber;
     private int contactState;
 
 
@@ -15,6 +16,7 @@ public class DeviceContact
         this.contactName = contactName;
         this.contactNumber = contactNumber;
         this.contactState = statusCode;
+        this.contactLastDigitsFromNumber = getLastDigitsFromContactNumber(contactNumber);
     }
 
     public String getContactId()
@@ -37,9 +39,24 @@ public class DeviceContact
         return contactState;
     }
 
+    public String getContactLastDigitsFromNumber()
+    {
+        return contactLastDigitsFromNumber;
+    }
+
     public void setContactState(int code)
     {
         contactState =code;
     }
 
+
+    private String getLastDigitsFromContactNumber(String contactNo)
+    {
+        int length  = contactNo.length();
+        if(length<5)
+        {
+            return contactNo;
+        }
+        return contactNo.substring(3,length-4);
+    }
 }
