@@ -4,6 +4,7 @@ import android.content.Context;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import com.android.privacycontrol.entities.DeviceContact;
+import com.android.privacycontrol.factory.AppFactory;
 import com.android.privacycontrol.utils.Logging;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class CallListenerManager extends PhoneStateListener
     {
         mContext=context;
         audioStateManager = new AudioStateManager(context);
-        contactManager = new ContactManager(mContext);
+        contactManager = AppFactory.getContactManager(context);
     }
 
 

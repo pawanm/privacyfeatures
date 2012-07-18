@@ -16,13 +16,23 @@ public class ContactManager
     private List<DeviceContact> allContactsList;
     private DeviceContactStore contactStore;
     private DeviceManager deviceManager;
+    private static ContactManager instance;
 
-    public ContactManager(Context context)
+    private ContactManager(Context context)
     {
         allContactsList = new ArrayList<DeviceContact>();
 
         contactStore = new DeviceContactStore(context);
         deviceManager = new DeviceManager(context);
+    }
+
+    public static synchronized ContactManager getInstance(Context context)
+    {
+       if(instance==null)
+       {
+           instance = new ContactManager(context);
+       }
+       return instance;
     }
 
     public List<DeviceContact> getAllContacts()

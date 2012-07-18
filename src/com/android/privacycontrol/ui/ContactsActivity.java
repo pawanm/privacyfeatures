@@ -9,6 +9,7 @@ import com.android.privacycontrol.R;
 import com.android.privacycontrol.adapters.AllContactsAdapter;
 import com.android.privacycontrol.conroller.ContactManager;
 import com.android.privacycontrol.entities.DeviceContact;
+import com.android.privacycontrol.factory.AppFactory;
 import compatibility.actionbar.ActionBarActivity;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class ContactsActivity extends ActionBarActivity
 
     private void init()
     {
-        contactManager = new ContactManager(this);
+        contactManager = AppFactory.getContactManager(this);
 
         contactsLayoutView = findViewById(R.id.contactsLayoutView);
         tempView = (LinearLayout) findViewById(R.id.progressbar_view);
