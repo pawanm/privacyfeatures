@@ -253,7 +253,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int action_bar_view=0x7f030000;
         public static final int activity_contacts=0x7f030001;
         public static final int activity_preferences=0x7f030002;
-        public static final int list_item_contact=0x7f030003;
+        public static final int contact_list_item=0x7f030003;
         public static final int progress_bar=0x7f030004;
         public static final int seprated_list_view_header=0x7f030005;
     }

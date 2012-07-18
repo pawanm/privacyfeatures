@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.privacycontrol.R;
 import com.android.privacycontrol.entities.DeviceContact;
@@ -54,11 +53,11 @@ public class AllContactsAdapter extends BaseAdapter
 
         if (convertView == null)
         {
-            convertView = mInflater.inflate(R.layout.list_item_contact, null);
+            convertView = mInflater.inflate(R.layout.contact_list_item, null);
             holder = new ViewHolder();
             holder.contactName = (TextView) convertView.findViewById(R.id.contactName);
             holder.contactPhone = (TextView) convertView.findViewById(R.id.contactPhone);
-            holder.contactState = (ImageView) convertView.findViewById(R.id.contactState);
+            holder.contactState = convertView.findViewById(R.id.contactState);
             convertView.setTag(holder);
         }
         else
@@ -70,8 +69,8 @@ public class AllContactsAdapter extends BaseAdapter
 
         holder.contactName.setText(entry.getContactName());
         holder.contactPhone.setText(entry.getContactNumber());
-        //holder.contactState.setBackgroundResource(Utils.getColorForContactState(entry.getContactState()));
-        holder.contactState.setBackgroundColor(Utils.getColorForContactState(entry.getContactState()));
+        holder.contactState.setBackgroundResource(Utils.getColorForContactState(entry.getContactState()));
+        //holder.contactState.setBackgroundColor(Utils.getColorForContactState(entry.getContactState()));
         return convertView;
     }
 
@@ -84,7 +83,7 @@ public class AllContactsAdapter extends BaseAdapter
     {
         TextView contactName;
         TextView contactPhone;
-        ImageView contactState;
+        View contactState;
     }
 
 

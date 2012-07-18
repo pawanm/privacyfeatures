@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/contact_item_height"
+                android:orientation="horizontal"
         >
 
-    <ImageView
+    <View
             android:id="@+id/contactState"
             android:layout_height="fill_parent"
             android:layout_width="@dimen/presence_bar_width"
@@ -13,7 +14,13 @@
             android:background="@color/normalContact"
             />
 
-    <TextView android:id="@+id/contactName"
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="fill_parent"
+                  android:orientation="vertical"
+                  android:layout_height="@dimen/contact_item_height"
+            >
+        <TextView android:id="@+id/contactName"
               android:layout_marginTop="8dp"
               android:layout_marginRight="100dp"
               android:textStyle="bold"
@@ -29,5 +36,5 @@
               android:text="Phone"
               style="@style/roster_item_subtext"
             />
-
-</RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
