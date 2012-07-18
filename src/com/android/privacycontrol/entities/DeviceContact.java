@@ -52,11 +52,19 @@ public class DeviceContact
 
     private String getLastDigitsFromContactNumber(String contactNo)
     {
-        int length  = contactNo.length();
-        if(length<5)
+        try
+        {
+            int length  = contactNo.length();
+            if(length<6)
+            {
+                return contactNo;
+            }
+
+            return contactNo.substring(4);
+        }
+        catch (Exception ex)
         {
             return contactNo;
         }
-        return contactNo.substring(3,length-4);
     }
 }

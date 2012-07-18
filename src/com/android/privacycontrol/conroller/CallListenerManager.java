@@ -13,12 +13,12 @@ public class CallListenerManager extends PhoneStateListener
     AudioStateManager audioStateManager;
     ContactManager contactManager;
     private Context mContext;
-    List<DeviceContact> favouriteList;
+    int currentRingerMode;
 
     public CallListenerManager(Context context)
     {
         mContext=context;
-        audioStateManager = new AudioStateManager();
+        audioStateManager = new AudioStateManager(context);
         contactManager = new ContactManager(mContext);
     }
 
@@ -28,8 +28,14 @@ public class CallListenerManager extends PhoneStateListener
     {
         if(TelephonyManager.CALL_STATE_RINGING == state)
         {
-            Logging.debug("CallListener: Incoming call from " + incomingNumber);
-            audioStateManager.setPhoneState(mContext,getNumberStatus(incomingNumber));
+            int code = getNumberStatus(incomingNumber);
+            Logging.debug("CallListener: Incoming call from " + incomingNumber + ", contactStatus: " + code);
+
+            if(code==0)
+                return;
+
+            currentRingerMode = audioStateManager.getRingerMode();
+            audioStateManager.changeRingerMode(code);
         }
         if(TelephonyManager.CALL_STATE_OFFHOOK == state)
         {
@@ -38,6 +44,7 @@ public class CallListenerManager extends PhoneStateListener
         if(TelephonyManager.CALL_STATE_IDLE == state)
         {
             Logging.debug("CallListener: Idle");
+            audioStateManager.resetRingerMode(currentRingerMode);
         }
     }
 
@@ -46,7 +53,6 @@ public class CallListenerManager extends PhoneStateListener
         List<DeviceContact> list = contactManager.getRestrictedContactList();
         for(DeviceContact contact: list)
         {
-            Logging.debug(contact.getContactLastDigitsFromNumber() + "xxxxx");
             if(incomingNo.contains(contact.getContactLastDigitsFromNumber()))
             {
                 return -1;
@@ -56,7 +62,7 @@ public class CallListenerManager extends PhoneStateListener
         list = contactManager.getFavouriteList();
         for(DeviceContact contact: list)
         {
-            if(incomingNo.contains(contact.getContactNumber()))
+            if(incomingNo.contains(contact.getContactLastDigitsFromNumber()))
             {
                 return 1;
             }

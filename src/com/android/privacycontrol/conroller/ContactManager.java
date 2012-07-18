@@ -27,20 +27,24 @@ public class ContactManager
 
     public List<DeviceContact> getAllContacts()
     {
-        if(allContactsList.size()==0)
+        if (allContactsList.size() > 0)
         {
-            Logging.debug("getting contacts from store");
-            allContactsList = contactStore.getDeviceContacts();
-            if(allContactsList.size()==0)
-            {
-                Logging.debug("getting contacts from device");
-                allContactsList =  deviceManager.getDeviceContacts();
-                contactStore.saveDeviceContacts(allContactsList);
-                Logging.debug("contacts saved: " + allContactsList.size());
-            }
+            return allContactsList;
         }
-        Logging.debug("returning contacts: " + allContactsList.size());
+
+        Logging.debug("getting contacts from store");
+        allContactsList = contactStore.getDeviceContacts();
+
+        if (allContactsList.size() == 0)
+        {
+            Logging.debug("getting contacts from device");
+            allContactsList = deviceManager.getDeviceContacts();
+            contactStore.saveDeviceContacts(allContactsList);
+            Logging.debug("contacts saved: " + allContactsList.size());
+        }
+
         return getSortedList(allContactsList);
+
     }
 
     public List<DeviceContact> getRestrictedContactList()
@@ -57,15 +61,16 @@ public class ContactManager
     {
         List<DeviceContact> filteredContacts = new ArrayList<DeviceContact>();
         allContactsList = getAllContacts();
-        for(DeviceContact contact: allContactsList)
+        for (DeviceContact contact : allContactsList)
         {
-           if(contact.getContactState()==contactState)
-           {
-               filteredContacts.add(contact);
-           }
+            if (contact.getContactState() == contactState)
+            {
+                filteredContacts.add(contact);
+            }
         }
         return getSortedList(filteredContacts);
     }
+
     public boolean updateContact(DeviceContact contact, int newContactState)
     {
         DeviceContact newContact = contact;
@@ -80,7 +85,7 @@ public class ContactManager
 
     private List<DeviceContact> getSortedList(List<DeviceContact> contactList)
     {
-        Collections.sort(contactList,comparator);
+        Collections.sort(contactList, comparator);
         return contactList;
     }
 
