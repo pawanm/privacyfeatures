@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.android.privacycontrol.R;
 import com.android.privacycontrol.entities.DeviceContact;
+import com.android.privacycontrol.utils.app;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,7 @@ public class AllContactsAdapter extends BaseAdapter
             holder = new ViewHolder();
             holder.contactName = (TextView) convertView.findViewById(R.id.contactName);
             holder.contactPhone = (TextView) convertView.findViewById(R.id.contactPhone);
+            holder.contactState = convertView.findViewById(R.id.contactState);
             convertView.setTag(holder);
         }
         else
@@ -67,6 +69,7 @@ public class AllContactsAdapter extends BaseAdapter
 
         holder.contactName.setText(entry.getContactName());
         holder.contactPhone.setText(entry.getContactNumber());
+        holder.contactState.setBackgroundResource(app.getColorForContactState(entry.getContactState()));
         return convertView;
     }
 
@@ -79,6 +82,7 @@ public class AllContactsAdapter extends BaseAdapter
     {
         TextView contactName;
         TextView contactPhone;
+        View contactState;
     }
 
 

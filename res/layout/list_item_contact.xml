@@ -5,6 +5,14 @@
                 android:layout_height="@dimen/contact_item_height"
         >
 
+    <View
+            android:id="@+id/contactState"
+            android:layout_height="fill_parent"
+            android:layout_width="@dimen/presence_bar_width"
+            android:layout_alignParentLeft="true"
+            android:background="@color/normalContact"
+            />
+
     <TextView android:id="@+id/contactName"
               android:layout_marginTop="8dp"
               android:layout_marginRight="100dp"

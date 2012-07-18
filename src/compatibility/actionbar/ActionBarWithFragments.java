@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TabHost;
-import com.android.privacycontrol.R;
 import compatibility.tabs.TabFactory;
 
 import java.util.HashMap;
@@ -69,12 +68,12 @@ public abstract class ActionBarWithFragments extends FragmentActivity
 
     protected void updateTabUi(String selectedTab)
     {
-        if (!mActionBarHelper.isIcs())
+       /* if (!mActionBarHelper.isIcs())
         {
             for (String key : tabViews.keySet())
             {
                 View view = tabViews.get(key);
-                View viewById = view.findViewById(R.id.title);
+                //View viewById = view.findViewById(R.id.title);
                 if (viewById != null)
                 {
                     viewById.setBackgroundResource(R.drawable.tab_normal);
@@ -82,8 +81,8 @@ public abstract class ActionBarWithFragments extends FragmentActivity
             }
 
             View view = tabViews.get(selectedTab);
-            view.findViewById(R.id.title).setBackgroundResource(R.drawable.tab_active);
-        }
+            //view.findViewById(R.id.title).setBackgroundResource(R.drawable.tab_active);
+        }*/
     }
 
     private void setTabView(String tag, View tabView)

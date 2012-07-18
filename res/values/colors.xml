@@ -25,9 +25,9 @@
     <color name="roster_item_background_unselected">#ffffff</color>
     <color name="roster_item_background_selected">#888888</color>
     <color name="presence_unknown">#d5f0b8</color>
-    <color name="presence_available">#68cc1f</color>
-    <color name="presence_busy">#c63f26</color>
-    <color name="presence_away">#fdd311</color>
+    <color name="favouriteContact">#68cc1f</color>
+    <color name="restrictedContact">#c63f26</color>
+    <color name="normalContact">#fdd311</color>
     <color name="presence_offline">#cccccc</color>
     <color name="ics_account_item_account_name">#333333</color>
     <color name="ics_account_item_status">#777777</color>
