@@ -37,12 +37,10 @@ public class ContactManager
 
     public List<DeviceContact> getAllContacts()
     {
-        /*if (allContactsList.size() > 0)
+        if (allContactsList.size() > 0)
         {
             return allContactsList;
         }
-
-        */
 
         Logging.debug("getting contacts from store");
         allContactsList = contactStore.getDeviceContacts();

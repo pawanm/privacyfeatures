@@ -13,12 +13,10 @@ public class CallListenerManager extends PhoneStateListener
 {
     AudioStateManager audioStateManager;
     ContactManager contactManager;
-    private Context mContext;
     int currentRingerMode;
 
     public CallListenerManager(Context context)
     {
-        mContext=context;
         audioStateManager = new AudioStateManager(context);
         contactManager = AppFactory.getContactManager(context);
     }
@@ -56,6 +54,7 @@ public class CallListenerManager extends PhoneStateListener
         List<DeviceContact> list = contactManager.getRestrictedContactList();
         for(DeviceContact contact: list)
         {
+            Logging.debug("Restricted: " + contact.getContactNumber());
             if(incomingNo.contains(contact.getContactLastDigitsFromNumber()))
             {
                 return -1;
@@ -65,6 +64,7 @@ public class CallListenerManager extends PhoneStateListener
         list = contactManager.getFavouriteList();
         for(DeviceContact contact: list)
         {
+            Logging.debug("Favourite: " + contact.getContactNumber());
             if(incomingNo.contains(contact.getContactLastDigitsFromNumber()))
             {
                 return 1;
