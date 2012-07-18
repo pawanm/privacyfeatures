@@ -15,7 +15,7 @@ import compatibility.tabs.TabDetail;
 import java.util.List;
 import java.util.Vector;
 
-public class ContactsActivity extends ActionBarWithFragments implements TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener
+public class ContactsFragmentActivity extends ActionBarWithFragments implements TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener
 {
     private TabHost mTabHost;
     private ViewPager mViewPager;
@@ -55,10 +55,10 @@ public class ContactsActivity extends ActionBarWithFragments implements TabHost.
     private void populateTabs(Bundle args)
     {
         TabDetail activeChats = new TabDetail(AllContactsFragment.class.toString(), AllContactsFragment.class, args);
-        TabDetail allContacts = new TabDetail(PrivateContactsFragment.class.toString(), PrivateContactsFragment.class, args);
+        //TabDetail allContacts = new TabDetail(PrivateContactsFragment.class.toString(), PrivateContactsFragment.class, args);
 
         addTab("All", activeChats);
-        addTab("Private", allContacts);
+        //addTab("Private", allContacts);
     }
 
     private View getTabView(String text)
@@ -82,7 +82,7 @@ public class ContactsActivity extends ActionBarWithFragments implements TabHost.
     private void initViewPager()
     {
         fragments.add(Fragment.instantiate(this, AllContactsFragment.class.getName()));
-        fragments.add(Fragment.instantiate(this, PrivateContactsFragment.class.getName()));
+        //fragments.add(Fragment.instantiate(this, PrivateContactsFragment.class.getName()));
         PagerAdapter mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
         this.mViewPager = (ViewPager) super.findViewById(R.id.viewpager);
         this.mViewPager.setAdapter(mPagerAdapter);
