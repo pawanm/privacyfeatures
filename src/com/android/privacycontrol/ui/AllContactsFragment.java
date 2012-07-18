@@ -2,9 +2,8 @@ package com.android.privacycontrol.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import com.android.privacycontrol.R;
@@ -22,6 +21,7 @@ public class AllContactsFragment extends Fragment
     private View contactsLayoutView;
     private LinearLayout tempView;
     private ContactManager contactManager;
+    private DeviceContact selectedContact;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -62,21 +62,74 @@ public class AllContactsFragment extends Fragment
         contactsLayoutView = tabAllContacts.findViewById(R.id.contactsLayoutView);
         tempView = (LinearLayout) tabAllContacts.findViewById(R.id.temp_view);
         contactList = (ListView) contactsLayoutView.findViewById(R.id.contactsList);
+        registerForContextMenu(contactList);
 
         allContactsAdapter = new AllContactsAdapter(this.getActivity());
         contactList.setAdapter(allContactsAdapter);
+
+        addOnClickListener();
+
+
         showProgressBar(true);
         refreshList();
     }
 
+    private void addOnClickListener()
+    {
+        contactList.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                  view.showContextMenu();
+            }
+        });
+    }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater = getActivity().getMenuInflater();
+        menuInflater.inflate(R.menu.contacts_context_menu, menu);
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        DeviceContact deviceContact = allContactsAdapter.getItem(info.position);
+        selectedContact = deviceContact;
+        menu.setHeaderTitle(deviceContact.getContactName());
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item)
+    {
+        int itemId = item.getItemId();
+        int newContactState=0;
+        if (itemId == R.id.menu_make_favourite)
+        {
+            newContactState=1;
+        }
+        else if (itemId == R.id.menu_make_restricted)
+        {
+            newContactState=-1;
+        }
+        else if (itemId == R.id.menu_reset)
+        {
+            newContactState=0;
+        }
+        else
+        {
+            return super.onContextItemSelected(item);
+        }
+        contactManager.updateContact(selectedContact, newContactState);
+        refreshList();
+        return true;
+    }
     private void refreshList()
     {
         new Thread(new Runnable()
         {
             public void run()
             {
-                List<DeviceContact> deviceContacts = contactManager.getContacts();
+                List<DeviceContact> deviceContacts = contactManager.getAllContacts();
                 updateListView(deviceContacts);
             }
         }).start();

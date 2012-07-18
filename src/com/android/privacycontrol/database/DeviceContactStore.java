@@ -17,7 +17,7 @@ public class DeviceContactStore
 
     public enum fields
     {
-        ContactId, ContactName, ContactNo, StatusCode
+        ContactId, ContactName, ContactNo, ContactState
     }
 
     public DeviceContactStore(Context context)
@@ -33,11 +33,24 @@ public class DeviceContactStore
             values.put(fields.ContactId.toString(), deviceContact.getContactId());
             values.put(fields.ContactName.toString(), deviceContact.getContactName());
             values.put(fields.ContactNo.toString(), deviceContact.getContactNumber());
-            values.put(fields.StatusCode.toString(), deviceContact.getStatusCode()+"");
+            values.put(fields.ContactState.toString(), deviceContact.getContactState()+"");
 
             mDatabase.insert(DEVICE_CONTACTS_TABLE, null ,convertToContentValues(values));
         }
     }
+
+    private ContentValues convertToContentValues(DeviceContact contact)
+    {
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(fields.ContactId.toString(),contact.getContactId());
+        contentValues.put(fields.ContactName.toString(),contact.getContactId());
+        contentValues.put(fields.ContactNo.toString(),contact.getContactId());
+        contentValues.put(fields.ContactState.toString(),contact.getContactState());
+
+        return contentValues;
+    }
+
 
     private ContentValues convertToContentValues(Map<String, String> values)
     {
@@ -49,11 +62,12 @@ public class DeviceContactStore
         return contentValues;
     }
 
+
     public synchronized List<DeviceContact> getDeviceContacts()
     {
         String[] columns =
                 { fields.ContactId.toString(), fields.ContactName.toString(), fields.ContactNo.toString(),
-                        fields.StatusCode.toString()};
+                        fields.ContactState.toString()};
 
         Cursor resultCursor = mDatabase.query(DEVICE_CONTACTS_TABLE, columns, null, null, null, null, fields.ContactId.toString()
                 + " ASC");
@@ -69,12 +83,13 @@ public class DeviceContactStore
         return entries;
     }
 
-    public synchronized void removeContact(String contactId)
+    public synchronized void updateContact(DeviceContact contact)
     {
         String where = fields.ContactId + "=?";
         String whereArgs[] =
-                { contactId };
-        mDatabase.delete(DEVICE_CONTACTS_TABLE, where, whereArgs);
+                { contact.getContactId() };
+        mDatabase.update(DEVICE_CONTACTS_TABLE, convertToContentValues(contact), where, whereArgs);
+
     }
 
 

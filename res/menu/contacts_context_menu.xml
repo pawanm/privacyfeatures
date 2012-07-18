@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_make_favourite"
+          android:title="@string/menu_make_favourite"/>
+
+    <item android:id="@+id/menu_make_restricted"
+          android:title="@string/menu_make_restricted"/>
+
+    <item android:id="@+id/menu_reset"
+          android:title="@string/menu_make_reset"/>
+</menu>

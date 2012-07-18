@@ -2,5 +2,8 @@
 <resources>
     <string name="app_name">Privacy Features</string>
     <string name="loading_contacts">Loading contacts</string>
+    <string name="menu_make_favourite">Add to favourites</string>
+    <string name="menu_make_restricted">Add to restricted</string>
+    <string name="menu_make_reset">Reset contact</string>
 
 </resources>

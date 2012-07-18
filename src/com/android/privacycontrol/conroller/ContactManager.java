@@ -13,33 +13,68 @@ import java.util.List;
 
 public class ContactManager
 {
-    private List<DeviceContact> contactList;
+    private List<DeviceContact> allContactsList;
     private DeviceContactStore contactStore;
     private DeviceManager deviceManager;
 
     public ContactManager(Context context)
     {
-        contactList = new ArrayList<DeviceContact>();
+        allContactsList = new ArrayList<DeviceContact>();
+
         contactStore = new DeviceContactStore(context);
         deviceManager = new DeviceManager(context);
     }
 
-    public List<DeviceContact> getContacts()
+    public List<DeviceContact> getAllContacts()
     {
-        if(contactList.size()==0)
+        if(allContactsList.size()==0)
         {
             Logging.debug("getting contacts from store");
-            contactList = contactStore.getDeviceContacts();
-            if(contactList.size()==0)
+            allContactsList = contactStore.getDeviceContacts();
+            if(allContactsList.size()==0)
             {
                 Logging.debug("getting contacts from device");
-                contactList =  deviceManager.getDeviceContacts();
-                contactStore.saveDeviceContacts(contactList);
-                Logging.debug("contacts saved: " + contactList.size());
+                allContactsList =  deviceManager.getDeviceContacts();
+                contactStore.saveDeviceContacts(allContactsList);
+                Logging.debug("contacts saved: " + allContactsList.size());
             }
         }
-        Logging.debug("returning contacts: " + contactList.size());
-        return getSortedList(contactList);
+        Logging.debug("returning contacts: " + allContactsList.size());
+        return getSortedList(allContactsList);
+    }
+
+    public List<DeviceContact> getRestrictedContactList()
+    {
+        return getFilteredContacts(-1);
+    }
+
+    public List<DeviceContact> getFavouriteList()
+    {
+        return getFilteredContacts(1);
+    }
+
+    private List<DeviceContact> getFilteredContacts(int contactState)
+    {
+        List<DeviceContact> filteredContacts = new ArrayList<DeviceContact>();
+        for(DeviceContact contact: allContactsList)
+        {
+           if(contact.getContactState()==contactState)
+           {
+               filteredContacts.add(contact);
+           }
+        }
+        return getSortedList(filteredContacts);
+    }
+    public boolean updateContact(DeviceContact contact, int newContactState)
+    {
+        DeviceContact newContact = contact;
+        newContact.setContactState(newContactState);
+
+        contactStore.updateContact(newContact);
+        allContactsList.remove(contact);
+        allContactsList.add(newContact);
+
+        return true;
     }
 
     private List<DeviceContact> getSortedList(List<DeviceContact> contactList)

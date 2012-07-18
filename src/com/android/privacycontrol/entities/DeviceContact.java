@@ -6,7 +6,7 @@ public class DeviceContact
     private String contactId;
     private String contactName;
     private String contactNumber;
-    private int statusCode;
+    private int contactState;
 
 
     public DeviceContact(String contactId, String contactName, String contactNumber, int statusCode)
@@ -14,7 +14,7 @@ public class DeviceContact
         this.contactId = contactId;
         this.contactName = contactName;
         this.contactNumber = contactNumber;
-        this.statusCode = statusCode;
+        this.contactState = statusCode;
     }
 
     public String getContactId()
@@ -32,9 +32,14 @@ public class DeviceContact
         return contactNumber;
     }
 
-    public int getStatusCode()
+    public int getContactState()
     {
-        return statusCode;
+        return contactState;
+    }
+
+    public void setContactState(int code)
+    {
+        contactState =code;
     }
 
 }
