@@ -44,8 +44,8 @@ public class DeviceContactStore
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(fields.ContactId.toString(),contact.getContactId());
-        contentValues.put(fields.ContactName.toString(),contact.getContactId());
-        contentValues.put(fields.ContactNo.toString(),contact.getContactId());
+        contentValues.put(fields.ContactName.toString(),contact.getContactName());
+        contentValues.put(fields.ContactNo.toString(),contact.getContactNumber());
         contentValues.put(fields.ContactState.toString(),contact.getContactState());
 
         return contentValues;
