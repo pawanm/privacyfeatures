@@ -231,22 +231,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int back_triangle=0x7f0a0002;
         public static final int cab_menu_container=0x7f0a000b;
         public static final int cab_title=0x7f0a000a;
-        public static final int contactName=0x7f0a000d;
-        public static final int contactPhone=0x7f0a000e;
-        public static final int contactsLayoutView=0x7f0a0012;
-        public static final int contactsList=0x7f0a0013;
-        public static final int list_header_title=0x7f0a0011;
-        public static final int loading_contact=0x7f0a000f;
-        public static final int menu_make_favourite=0x7f0a0016;
-        public static final int menu_make_restricted=0x7f0a0017;
-        public static final int menu_reset=0x7f0a0018;
+        public static final int contactName=0x7f0a000f;
+        public static final int contactPhone=0x7f0a0010;
+        public static final int contactsLayoutView=0x7f0a000c;
+        public static final int contactsList=0x7f0a000d;
+        public static final int list_header_title=0x7f0a0013;
+        public static final int loading_contact=0x7f0a0011;
+        public static final int menu_make_favourite=0x7f0a0014;
+        public static final int menu_make_restricted=0x7f0a0015;
+        public static final int menu_reset=0x7f0a0016;
         public static final int options_menu_container=0x7f0a0006;
-        public static final int roster_tab_progress_text=0x7f0a0010;
+        public static final int roster_tab_progress_text=0x7f0a0012;
         public static final int separator=0x7f0a0009;
-        public static final int temp_view=0x7f0a0014;
+        public static final int temp_view=0x7f0a000e;
         public static final int tick=0x7f0a0008;
-        public static final int title=0x7f0a0015;
-        public static final int viewpager=0x7f0a000c;
     }
     public static final class layout {
         public static final int action_bar_view=0x7f030000;
@@ -255,8 +253,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int list_item_contact=0x7f030003;
         public static final int progress_bar=0x7f030004;
         public static final int seprated_list_view_header=0x7f030005;
-        public static final int tab_all_contacts=0x7f030006;
-        public static final int tab_layout=0x7f030007;
     }
     public static final class menu {
         public static final int contacts_context_menu=0x7f090000;
