@@ -242,9 +242,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int menu_make_restricted=0x7f0a0016;
         public static final int menu_reset=0x7f0a0017;
         public static final int options_menu_container=0x7f0a0006;
+        public static final int progressbar_view=0x7f0a000e;
         public static final int roster_tab_progress_text=0x7f0a0013;
         public static final int separator=0x7f0a0009;
-        public static final int temp_view=0x7f0a000e;
         public static final int tick=0x7f0a0008;
     }
     public static final class layout {

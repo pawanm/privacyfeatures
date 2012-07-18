@@ -5,7 +5,7 @@
                 android:layout_height="@dimen/contact_item_height"
         >
 
-    <View
+    <ImageView
             android:id="@+id/contactState"
             android:layout_height="fill_parent"
             android:layout_width="@dimen/presence_bar_width"

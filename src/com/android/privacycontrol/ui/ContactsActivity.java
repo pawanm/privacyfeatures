@@ -42,7 +42,7 @@ public class ContactsActivity extends ActionBarActivity
         contactManager = new ContactManager(this);
 
         contactsLayoutView = findViewById(R.id.contactsLayoutView);
-        tempView = (LinearLayout) findViewById(R.id.temp_view);
+        tempView = (LinearLayout) findViewById(R.id.progressbar_view);
         contactList = (ListView) contactsLayoutView.findViewById(R.id.contactsList);
         allContactsAdapter = new AllContactsAdapter(this);
         contactList.setAdapter(allContactsAdapter);
