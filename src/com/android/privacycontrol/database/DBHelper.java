@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper
                 "contactid",
                 "contactname",
                 "contactno",
-                "statuscode");
+                "contactstate");
     }
 
     @Override

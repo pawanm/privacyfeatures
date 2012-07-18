@@ -56,6 +56,7 @@ public class ContactManager
     private List<DeviceContact> getFilteredContacts(int contactState)
     {
         List<DeviceContact> filteredContacts = new ArrayList<DeviceContact>();
+        allContactsList = getAllContacts();
         for(DeviceContact contact: allContactsList)
         {
            if(contact.getContactState()==contactState)

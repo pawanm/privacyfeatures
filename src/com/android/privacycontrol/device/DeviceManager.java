@@ -99,7 +99,7 @@ public class DeviceManager
     {
         final List<String> contactNumbers = getPhoneNumbersForContact(contactId);
         contactId = mDeviceId + "#" + contactId;
-        DeviceContact deviceContact = new DeviceContact(contactId, contactName, contactNumbers.get(0), 1);
+        DeviceContact deviceContact = new DeviceContact(contactId, contactName, contactNumbers.get(0), 0);
         return deviceContact;
     }
 
