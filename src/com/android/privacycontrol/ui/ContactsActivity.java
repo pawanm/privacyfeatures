@@ -6,7 +6,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import com.android.privacycontrol.R;
-import com.android.privacycontrol.adapters.AllContactsAdapter;
+import com.android.privacycontrol.adapters.ContactsAdapter;
 import com.android.privacycontrol.conroller.ContactManager;
 import com.android.privacycontrol.entities.DeviceContact;
 import com.android.privacycontrol.factory.AppFactory;
@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ContactsActivity extends ActionBarActivity
 {
-    private AllContactsAdapter allContactsAdapter;
+    private ContactsAdapter contactsAdapter;
     private ListView contactList;
     private View contactsLayoutView;
     private LinearLayout tempView;
@@ -45,8 +45,8 @@ public class ContactsActivity extends ActionBarActivity
         contactsLayoutView = findViewById(R.id.contactsLayoutView);
         tempView = (LinearLayout) findViewById(R.id.progressbar_view);
         contactList = (ListView) contactsLayoutView.findViewById(R.id.contactsList);
-        allContactsAdapter = new AllContactsAdapter(this);
-        contactList.setAdapter(allContactsAdapter);
+        contactsAdapter = new ContactsAdapter(this);
+        contactList.setAdapter(contactsAdapter);
 
         registerForContextMenu(contactList);
 
@@ -82,7 +82,7 @@ public class ContactsActivity extends ActionBarActivity
         getMenuInflater().inflate(R.menu.contacts_context_menu, menu);
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        DeviceContact deviceContact = allContactsAdapter.getItem(info.position);
+        DeviceContact deviceContact = contactsAdapter.getItem(info.position);
         selectedContact = deviceContact;
         menu.setHeaderTitle(deviceContact.getContactName());
     }
@@ -130,8 +130,8 @@ public class ContactsActivity extends ActionBarActivity
         {
             public void run()
             {
-                allContactsAdapter.setContacts(deviceContacts);
-                allContactsAdapter.notifyDataSetChanged();
+                contactsAdapter.setContacts(deviceContacts);
+                contactsAdapter.notifyDataSetChanged();
                 showProgressBar(false);
 
             }

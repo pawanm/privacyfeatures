@@ -13,13 +13,13 @@ import com.android.privacycontrol.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllContactsAdapter extends BaseAdapter
+public class ContactsAdapter extends BaseAdapter
 {
     private final Context mContext;
     private static LayoutInflater mInflater;
     private List<DeviceContact> contacts;
 
-    public AllContactsAdapter(Context context)
+    public ContactsAdapter(Context context)
     {
         mContext = context;
         mInflater = LayoutInflater.from(mContext);
