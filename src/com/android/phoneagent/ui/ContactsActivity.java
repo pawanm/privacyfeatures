@@ -199,7 +199,7 @@ public class ContactsActivity extends ActionBarActivity
         }
         else if(contactsDisplayMode==-1)
         {
-            setTitle("Favourite Contacts");
+            setTitle("All Contacts");
         }
     }
 
