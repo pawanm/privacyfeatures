@@ -159,7 +159,7 @@ public class ContactsActivity extends ActionBarActivity
                 switch (contactsDisplayMode)
                 {
                     case 0: deviceContacts = contactManager.getAllContacts();
-                            contactsDisplayMode=1;break;
+                            contactsDisplayMode=-1;break;
                     case 1: deviceContacts = contactManager.getFavouriteList();
                             contactsDisplayMode=-1;break;
                     case -1: deviceContacts = contactManager.getRestrictedContactList();
