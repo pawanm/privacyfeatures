@@ -1,7 +1,10 @@
 package com.android.privacycontrol.ui;
 
 import android.os.Bundle;
-import android.view.*;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -11,7 +14,9 @@ import com.android.privacycontrol.conroller.ContactManager;
 import com.android.privacycontrol.entities.DeviceContact;
 import com.android.privacycontrol.factory.AppFactory;
 import compatibility.actionbar.ActionBarActivity;
+import compatibility.actionbar.ActionBarHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsActivity extends ActionBarActivity
@@ -22,6 +27,8 @@ public class ContactsActivity extends ActionBarActivity
     private LinearLayout tempView;
     private ContactManager contactManager;
     private DeviceContact selectedContact;
+    private ActionBarHelper actionBarHelper;
+    private int contactsDisplayMode=0;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -33,6 +40,14 @@ public class ContactsActivity extends ActionBarActivity
     }
 
     @Override
+    protected void onPostCreate(Bundle savedInstanceState)
+    {
+        super.onPostCreate(savedInstanceState);
+        actionBarHelper.setDisplayHomeAsUpEnabled(true);
+        actionBarHelper.setDisplayShowHomeEnabled(false);
+
+    }
+    @Override
     public void onStart()
     {
         super.onStart();
@@ -41,7 +56,7 @@ public class ContactsActivity extends ActionBarActivity
     private void init()
     {
         contactManager = AppFactory.getContactManager(this);
-
+        actionBarHelper = getActionBarHelper();
         contactsLayoutView = findViewById(R.id.contactsLayoutView);
         tempView = (LinearLayout) findViewById(R.id.progressbar_view);
         contactList = (ListView) contactsLayoutView.findViewById(R.id.contactsList);
@@ -54,7 +69,7 @@ public class ContactsActivity extends ActionBarActivity
 
         showProgressBar(true);
 
-        refreshList();
+        refreshList(false);
     }
 
     private void addOnClickListener()
@@ -75,6 +90,16 @@ public class ContactsActivity extends ActionBarActivity
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home)
+        {
+            refreshList(true);
+        }
+        return true;
+    }
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
@@ -109,16 +134,29 @@ public class ContactsActivity extends ActionBarActivity
             return super.onContextItemSelected(item);
         }
         contactManager.updateContact(selectedContact, newContactState);
-        refreshList();
+        refreshList(true);
         return true;
     }
-    private void refreshList()
+    private void refreshList(final boolean toggleFlag)
     {
         new Thread(new Runnable()
         {
             public void run()
             {
-                List<DeviceContact> deviceContacts = contactManager.getAllContacts();
+                List<DeviceContact> deviceContacts = new ArrayList<DeviceContact>();
+                if(toggleFlag==false)
+                {
+                    contactsDisplayMode=0;
+                }
+                switch (contactsDisplayMode)
+                {
+                    case 0: deviceContacts = contactManager.getAllContacts();
+                            contactsDisplayMode=1;break;
+                    case 1: deviceContacts = contactManager.getFavouriteList();
+                            contactsDisplayMode=-1;break;
+                    case -1: deviceContacts = contactManager.getRestrictedContactList();
+                            contactsDisplayMode=0;break;
+                }
                 updateListView(deviceContacts);
             }
         }).start();
