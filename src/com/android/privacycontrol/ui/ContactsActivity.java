@@ -175,11 +175,28 @@ public class ContactsActivity extends ActionBarActivity
                 contactsAdapter.setContacts(deviceContacts);
                 contactsAdapter.notifyDataSetChanged();
                 showProgressBar(false);
+                setActivityTitle();
             }
         };
 
         runOnUiThread(t);
 
+    }
+
+    private void setActivityTitle()
+    {
+        if(contactsDisplayMode==0)
+        {
+            setTitle("Restricted Contacts");
+        }
+        else if(contactsDisplayMode==1)
+        {
+            setTitle("All Contacts");
+        }
+        else if(contactsDisplayMode==-1)
+        {
+            setTitle("Favourite Contacts");
+        }
     }
 
     private void showProgressBar(boolean flag)
