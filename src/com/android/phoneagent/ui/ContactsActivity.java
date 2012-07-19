@@ -26,6 +26,7 @@ public class ContactsActivity extends ActionBarActivity
     private ListView contactList;
     private View contactsLayoutView;
     private LinearLayout tempView;
+    private View emptyStateView;
     private ContactManager contactManager;
     private DeviceContact selectedContact;
     private ActionBarHelper actionBarHelper;
@@ -66,8 +67,8 @@ public class ContactsActivity extends ActionBarActivity
         contactsAdapter = new ContactsAdapter(this);
         contactList.setAdapter(contactsAdapter);
 
-        final View view = findViewById(R.id.emptyContactView);
-        contactList.setEmptyView(view);
+        emptyStateView = findViewById(R.id.emptyContactView);
+        contactList.setEmptyView(emptyStateView);
 
         registerForContextMenu(contactList);
 
@@ -206,6 +207,7 @@ public class ContactsActivity extends ActionBarActivity
     {
         if (flag)
         {
+            emptyStateView.setVisibility(View.GONE);
             contactsLayoutView.setVisibility(View.GONE);
             tempView.setVisibility(View.VISIBLE);
             tempView.addView(getLayoutInflater().inflate(R.layout.progress_bar, tempView, false));
