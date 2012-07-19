@@ -2,9 +2,9 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/contacts_menu_displmay_mode"
-          android:icon="@drawable/menu_pendingrequest"
-          android:title="@string/menu_contact_display_mode"
+    <item android:id="@+id/contacts_menu_search"
+          android:icon="@drawable/menu_search"
+          android:title="@string/menu_contact_search"
           android:showAsAction="always"
             />
 
