@@ -63,6 +63,9 @@ public class ContactsActivity extends ActionBarActivity
         contactsAdapter = new ContactsAdapter(this);
         contactList.setAdapter(contactsAdapter);
 
+        final View view = findViewById(R.id.emptyContactView);
+        contactList.setEmptyView(view);
+
         registerForContextMenu(contactList);
 
         addOnClickListener();
@@ -172,7 +175,6 @@ public class ContactsActivity extends ActionBarActivity
                 contactsAdapter.setContacts(deviceContacts);
                 contactsAdapter.notifyDataSetChanged();
                 showProgressBar(false);
-
             }
         };
 

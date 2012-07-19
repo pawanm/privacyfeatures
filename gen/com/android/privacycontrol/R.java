@@ -231,21 +231,22 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int back_triangle=0x7f0a0002;
         public static final int cab_menu_container=0x7f0a000b;
         public static final int cab_title=0x7f0a000a;
-        public static final int contactName=0x7f0a0010;
-        public static final int contactPhone=0x7f0a0011;
-        public static final int contactState=0x7f0a000f;
+        public static final int contactName=0x7f0a0011;
+        public static final int contactPhone=0x7f0a0012;
+        public static final int contactState=0x7f0a0010;
         public static final int contactsLayoutView=0x7f0a000c;
         public static final int contactsList=0x7f0a000d;
-        public static final int contacts_menu_displmay_mode=0x7f0a0015;
-        public static final int contacts_menu_preferences=0x7f0a0016;
-        public static final int list_header_title=0x7f0a0014;
-        public static final int loading_contact=0x7f0a0012;
-        public static final int menu_make_favourite=0x7f0a0017;
-        public static final int menu_make_restricted=0x7f0a0018;
-        public static final int menu_reset=0x7f0a0019;
+        public static final int contacts_menu_displmay_mode=0x7f0a0016;
+        public static final int contacts_menu_preferences=0x7f0a0017;
+        public static final int emptyContactView=0x7f0a000e;
+        public static final int list_header_title=0x7f0a0015;
+        public static final int loading_contact=0x7f0a0013;
+        public static final int menu_make_favourite=0x7f0a0018;
+        public static final int menu_make_restricted=0x7f0a0019;
+        public static final int menu_reset=0x7f0a001a;
         public static final int options_menu_container=0x7f0a0006;
-        public static final int progressbar_view=0x7f0a000e;
-        public static final int roster_tab_progress_text=0x7f0a0013;
+        public static final int progressbar_view=0x7f0a000f;
+        public static final int roster_tab_progress_text=0x7f0a0014;
         public static final int separator=0x7f0a0009;
         public static final int tick=0x7f0a0008;
     }
@@ -263,6 +264,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class string {
         public static final int app_name=0x7f070000;
+        public static final int empty_contacts=0x7f070007;
         public static final int loading_contacts=0x7f070001;
         public static final int menu_contact_display_mode=0x7f070005;
         public static final int menu_contact_preferences=0x7f070006;
