@@ -134,9 +134,10 @@ public class ContactsActivity extends ActionBarActivity
             return super.onContextItemSelected(item);
         }
         contactManager.updateContact(selectedContact, newContactState);
-        refreshList(true);
+        refreshList(false);
         return true;
     }
+
     private void refreshList(final boolean toggleFlag)
     {
         new Thread(new Runnable()
