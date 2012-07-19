@@ -7,11 +7,12 @@ import android.view.*;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.android.privacycontrol.R;
+import com.android.privacycontrol.utils.Utils;
 import compatibility.view.ActionBarView;
 import compatibility.view.ActionModeCompat;
 import compatibility.view.ActionModeWrapper;
 import compatibility.widget.MenuCompat;
-import com.android.privacycontrol.R;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -41,6 +42,7 @@ public class ActionBarGingerbread extends ActionBarHelper
         mActivity.getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.action_bar_view);
         mActionBarView = new ActionBarView(mActivity, mActivity.findViewById(R.id.action_bar_normal_view));
         setupMenuItemsOnActionBar();
+        Utils.overrideFontToRobotoBold(mActivity.findViewById(R.layout.action_bar_view));
     }
 
     @Override

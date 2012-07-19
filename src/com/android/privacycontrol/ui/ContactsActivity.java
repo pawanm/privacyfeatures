@@ -13,6 +13,7 @@ import com.android.privacycontrol.adapters.ContactsAdapter;
 import com.android.privacycontrol.conroller.ContactManager;
 import com.android.privacycontrol.entities.DeviceContact;
 import com.android.privacycontrol.factory.AppFactory;
+import com.android.privacycontrol.utils.Utils;
 import compatibility.actionbar.ActionBarActivity;
 import compatibility.actionbar.ActionBarHelper;
 
@@ -37,6 +38,8 @@ public class ContactsActivity extends ActionBarActivity
 
         setContentView(R.layout.activity_contacts);
         init();
+        Utils.overrideFontToRobotoBold(findViewById(R.layout.activity_contacts));
+
     }
 
     @Override
