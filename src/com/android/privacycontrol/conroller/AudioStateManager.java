@@ -17,7 +17,7 @@ public class AudioStateManager
         switch (ringerMode)
         {
             case -1:audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);break;
-            case 1:audioManager.setRingerMode(AudioManager.MODE_RINGTONE);break;
+            case 1:audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);break;
         }
     }
 
