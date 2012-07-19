@@ -1,4 +1,4 @@
-package com.android.privacycontrol.database;
+package com.android.phoneagent.database;
 
 
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper
 {
-    private final static String mDatabaseName = "privacyfeatures.sqlite";
+    private final static String mDatabaseName = "phoneagent.sqlite";
     private final static int mDatabaseVersion = 1;
     public final static String DEVICE_CONTACTS_TABLE = "DeviceContacts";
     private static DBHelper instance;

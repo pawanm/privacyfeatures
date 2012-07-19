@@ -2,7 +2,7 @@ package compatibility.view;
 
 import android.view.View;
 import android.widget.TextView;
-import com.android.privacycontrol.R;
+import com.android.phoneagent.R;
 
 
 public class ActionModeCompat

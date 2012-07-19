@@ -1,4 +1,4 @@
-package com.android.privacycontrol.adapters;
+package com.android.phoneagent.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import com.android.privacycontrol.R;
-import com.android.privacycontrol.entities.DeviceContact;
-import com.android.privacycontrol.utils.Utils;
+import com.android.phoneagent.R;
+import com.android.phoneagent.entities.DeviceContact;
+import com.android.phoneagent.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,11 @@
-package com.android.privacycontrol.utils;
+package com.android.phoneagent.utils;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.android.privacycontrol.R;
+import com.android.phoneagent.R;
 
 public class Utils
 {

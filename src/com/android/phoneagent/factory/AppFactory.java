@@ -1,7 +1,7 @@
-package com.android.privacycontrol.factory;
+package com.android.phoneagent.factory;
 
 import android.content.Context;
-import com.android.privacycontrol.conroller.ContactManager;
+import com.android.phoneagent.conroller.ContactManager;
 
 public class AppFactory
 {

@@ -1,11 +1,11 @@
-package com.android.privacycontrol.conroller;
+package com.android.phoneagent.conroller;
 
 import android.content.Context;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import com.android.privacycontrol.entities.DeviceContact;
-import com.android.privacycontrol.factory.AppFactory;
-import com.android.privacycontrol.utils.Logging;
+import com.android.phoneagent.entities.DeviceContact;
+import com.android.phoneagent.factory.AppFactory;
+import com.android.phoneagent.utils.Logging;
 
 import java.util.List;
 

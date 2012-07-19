@@ -1,4 +1,4 @@
-package com.android.privacycontrol.entities;
+package com.android.phoneagent.entities;
 
 
 public class DeviceContact

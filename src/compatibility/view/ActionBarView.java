@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import compatibility.widget.MenuCompat;
 import compatibility.widget.MenuItemCompat;
-import com.android.privacycontrol.R;
+import com.android.phoneagent.R;
 
 
 import java.util.Set;

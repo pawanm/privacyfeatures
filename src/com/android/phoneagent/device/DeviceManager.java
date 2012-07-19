@@ -1,4 +1,4 @@
-package com.android.privacycontrol.device;
+package com.android.phoneagent.device;
 
 
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
-import com.android.privacycontrol.database.DBHelper;
-import com.android.privacycontrol.entities.DeviceContact;
+import com.android.phoneagent.database.DBHelper;
+import com.android.phoneagent.entities.DeviceContact;
 
 import java.util.ArrayList;
 import java.util.List;

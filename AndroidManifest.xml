@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.android.privacycontrol"
+          package="com.android.phoneagent"
           android:versionCode="1"
           android:versionName="1.0">
 
@@ -13,9 +13,9 @@
 
 
 
-    <application android:label="@string/app_name" android:name="com.android.privacycontrol.services.App" android:icon="@drawable/alert" android:theme="@style/ApplicationTheme">
+    <application android:label="@string/app_name" android:name="com.android.phoneagent.services.App" android:icon="@drawable/alert" android:theme="@style/ApplicationTheme">
 
-        <service android:name="com.android.privacycontrol.services.AppService" android:label="AppService"/>
+        <service android:name="com.android.phoneagent.services.AppService" android:label="AppService"/>
 
 
         <activity android:name=".ui.ContactsActivity" android:label="@string/app_name" android:screenOrientation="portrait">

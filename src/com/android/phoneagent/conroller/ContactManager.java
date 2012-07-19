@@ -1,10 +1,10 @@
-package com.android.privacycontrol.conroller;
+package com.android.phoneagent.conroller;
 
 import android.content.Context;
-import com.android.privacycontrol.database.DeviceContactStore;
-import com.android.privacycontrol.device.DeviceManager;
-import com.android.privacycontrol.entities.DeviceContact;
-import com.android.privacycontrol.utils.Logging;
+import com.android.phoneagent.database.DeviceContactStore;
+import com.android.phoneagent.device.DeviceManager;
+import com.android.phoneagent.entities.DeviceContact;
+import com.android.phoneagent.utils.Logging;
 
 import java.util.ArrayList;
 import java.util.Collections;

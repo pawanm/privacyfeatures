@@ -1,10 +1,10 @@
-package com.android.privacycontrol.database;
+package com.android.phoneagent.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import com.android.privacycontrol.entities.DeviceContact;
+import com.android.phoneagent.entities.DeviceContact;
 
 import java.util.*;
 

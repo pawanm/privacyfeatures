@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import com.android.privacycontrol.R;
+import com.android.phoneagent.R;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

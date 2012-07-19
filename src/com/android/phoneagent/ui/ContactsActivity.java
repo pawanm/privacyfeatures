@@ -1,4 +1,4 @@
-package com.android.privacycontrol.ui;
+package com.android.phoneagent.ui;
 
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import com.android.privacycontrol.R;
-import com.android.privacycontrol.adapters.ContactsAdapter;
-import com.android.privacycontrol.conroller.ContactManager;
-import com.android.privacycontrol.entities.DeviceContact;
-import com.android.privacycontrol.factory.AppFactory;
-import com.android.privacycontrol.utils.Utils;
+import com.android.phoneagent.R;
+import com.android.phoneagent.adapters.ContactsAdapter;
+import com.android.phoneagent.conroller.ContactManager;
+import com.android.phoneagent.entities.DeviceContact;
+import com.android.phoneagent.factory.AppFactory;
+import com.android.phoneagent.utils.Utils;
 import compatibility.actionbar.ActionBarActivity;
 import compatibility.actionbar.ActionBarHelper;
 

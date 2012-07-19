@@ -1,4 +1,4 @@
-package com.android.privacycontrol.utils;
+package com.android.phoneagent.utils;
 
 import android.util.Log;
 
@@ -6,11 +6,11 @@ public class Logging
 {
     public static void debug(String msg)
     {
-        Log.d("privacy-control-debug",msg);
+        Log.d("PhoneAgent-Debug",msg);
     }
 
     public static void error(String msg)
     {
-        Log.e("privacy-control-error",msg);
+        Log.e("PhoneAgent-Error",msg);
     }
 }

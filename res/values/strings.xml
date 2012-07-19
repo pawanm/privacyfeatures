@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Privacy Features</string>
+    <string name="app_name">Phone Agent</string>
     <string name="loading_contacts">Loading contacts</string>
     <string name="menu_make_favourite">Add to favourites</string>
     <string name="menu_make_restricted">Add to restricted</string>
