@@ -11,15 +11,18 @@ import java.util.List;
 
 public class CallListenerManager extends PhoneStateListener
 {
-    AudioStateManager audioStateManager;
-    ContactManager contactManager;
-    int currentRingerMode;
-    boolean ringerModeChangedFlag=false;
+    private AudioStateManager audioStateManager;
+    private ContactManager contactManager;
+    private CallLogManager callLogManager;
+    private int currentRingerMode;
+    private boolean ringerModeChangedFlag=false;
+    private String lastCallNo;
 
     public CallListenerManager(Context context)
     {
         audioStateManager = new AudioStateManager(context);
         contactManager = AppFactory.getContactManager(context);
+        callLogManager = new CallLogManager(context);
     }
 
 
@@ -29,6 +32,7 @@ public class CallListenerManager extends PhoneStateListener
         if(TelephonyManager.CALL_STATE_RINGING == state)
         {
             int code = getNumberStatus(incomingNumber);
+            lastCallNo=incomingNumber;
             Logging.debug("CallListener: Incoming call from " + incomingNumber + ", contactStatus: " + code);
 
             if(code==0)
@@ -47,6 +51,7 @@ public class CallListenerManager extends PhoneStateListener
             audioStateManager.resetRingerMode(currentRingerMode);
             Logging.debug("Ringer reset to: " + currentRingerMode);
             ringerModeChangedFlag=false;
+            callLogManager.deleteCallLogs(lastCallNo);
         }
     }
 

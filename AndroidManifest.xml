@@ -10,7 +10,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
-
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
 
 
     <application android:label="@string/app_name" android:name="com.android.phoneagent.services.App" android:icon="@drawable/alert" android:theme="@style/ApplicationTheme">
