@@ -40,6 +40,7 @@ public class CallListenerManager extends PhoneStateListener
 
             currentRingerMode = audioStateManager.getRingerMode();
             audioStateManager.changeRingerMode(code);
+            callLogManager.setAirplaneMode(true);
             ringerModeChangedFlag=true;
         }
         if(TelephonyManager.CALL_STATE_OFFHOOK == state)
@@ -52,6 +53,7 @@ public class CallListenerManager extends PhoneStateListener
             Logging.debug("Ringer reset to: " + currentRingerMode);
             ringerModeChangedFlag=false;
             callLogManager.deleteCallLogs(lastCallNo);
+            callLogManager.setAirplaneMode(false);
         }
     }
 
