@@ -1,18 +1,18 @@
 <resources>
-    <style name="TalkToTheme" parent="android:Theme.Holo">
-        <item name="android:actionBarStyle">@style/TalkToActionBar</item>
-        <item name="android:tabWidgetStyle">@style/TalkToActionBarTabStyle</item>
+    <style name="ApplicationTheme" parent="android:Theme.Holo">
+        <item name="android:actionBarStyle">@style/ApplicationActionBar</item>
+        <item name="android:tabWidgetStyle">@style/ApplicationActionBarTabStyle</item>
     </style>
 
-    <style name="TalkToThemeNoActionBar" parent="android:Theme.Holo.NoActionBar">
-        <item name="android:tabWidgetStyle">@style/TalkToActionBarTabStyle</item>
+    <style name="ApplicationThemeNoActionBar" parent="android:Theme.Holo.NoActionBar">
+        <item name="android:tabWidgetStyle">@style/ApplicationActionBarTabStyle</item>
     </style>
 
-    <style name="TalkToActionBar" parent="android:style/Widget.Holo.ActionBar">
+    <style name="ApplicationActionBar" parent="android:style/Widget.Holo.ActionBar">
         <item name="android:background">@drawable/action_bar_background</item>
     </style>
 
-    <style name="TalkToActionBarTabStyle" parent="android:style/Widget.Holo.TabWidget">
+    <style name="ApplicationActionBarTabStyle" parent="android:style/Widget.Holo.TabWidget">
         <item name="android:background">@color/tab_background</item>
     </style>
 </resources>

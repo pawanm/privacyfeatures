@@ -274,13 +274,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class style {
         public static final int AccountItem=0x7f080006;
+        public static final int ApplicationActionBar=0x7f080020;
+        public static final int ApplicationActionBarTabStyle=0x7f080021;
+        public static final int ApplicationTheme=0x7f08001e;
+        public static final int ApplicationThemeNoActionBar=0x7f08001f;
         /** <item name="android:drawableRight">@drawable/arrow</item>
          */
         public static final int MoreTabItem=0x7f080005;
-        public static final int TalkToActionBar=0x7f080020;
-        public static final int TalkToActionBarTabStyle=0x7f080021;
-        public static final int TalkToTheme=0x7f08001e;
-        public static final int TalkToThemeNoActionBar=0x7f08001f;
         public static final int accountProfile_attribute=0x7f08000e;
         public static final int accountProfile_attributeValue=0x7f08000f;
         public static final int accountTabIcon=0x7f080008;
