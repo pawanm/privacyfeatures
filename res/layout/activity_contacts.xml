@@ -17,6 +17,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:divider="@drawable/separator"
+                android:fastScrollEnabled="true"
+                android:fastScrollAlwaysVisible="true"
                 style="@style/contact_list"/>
 
     </LinearLayout>
