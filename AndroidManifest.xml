@@ -13,7 +13,7 @@
 
 
 
-    <application android:label="@string/app_name" android:name="com.android.privacycontrol.services.App" android:icon="@drawable/alert">
+    <application android:label="@string/app_name" android:name="com.android.privacycontrol.services.App" android:icon="@drawable/alert" android:theme="@style/TalkToTheme">
 
         <service android:name="com.android.privacycontrol.services.AppService" android:label="AppService"/>
 
