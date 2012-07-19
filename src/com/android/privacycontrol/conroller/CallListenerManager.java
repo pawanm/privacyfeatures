@@ -14,6 +14,7 @@ public class CallListenerManager extends PhoneStateListener
     AudioStateManager audioStateManager;
     ContactManager contactManager;
     int currentRingerMode;
+    boolean ringerModeChangedFlag=false;
 
     public CallListenerManager(Context context)
     {
@@ -35,15 +36,17 @@ public class CallListenerManager extends PhoneStateListener
 
             currentRingerMode = audioStateManager.getRingerMode();
             audioStateManager.changeRingerMode(code);
+            ringerModeChangedFlag=true;
         }
         if(TelephonyManager.CALL_STATE_OFFHOOK == state)
         {
             Logging.debug("CallListener: Outgoing");
         }
-        if(TelephonyManager.CALL_STATE_IDLE == state)
+        if(TelephonyManager.CALL_STATE_IDLE == state && ringerModeChangedFlag)
         {
             audioStateManager.resetRingerMode(currentRingerMode);
             Logging.debug("Ringer reset to: " + currentRingerMode);
+            ringerModeChangedFlag=false;
         }
     }
 

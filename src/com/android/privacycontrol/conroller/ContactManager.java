@@ -37,11 +37,6 @@ public class ContactManager
 
     public List<DeviceContact> getAllContacts()
     {
-        if (allContactsList.size() > 0)
-        {
-            return allContactsList;
-        }
-
         allContactsList = contactStore.getDeviceContacts();
 
         if (allContactsList.size() == 0)
@@ -53,7 +48,6 @@ public class ContactManager
         }
 
         return getSortedList(allContactsList);
-
     }
 
     public List<DeviceContact> getRestrictedContactList()

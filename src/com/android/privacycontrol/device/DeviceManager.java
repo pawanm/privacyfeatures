@@ -59,8 +59,11 @@ public class DeviceManager
 
             if (hasAtleastOnePhoneNumber(cursor, hasPhoneNumberColumnIndex))
             {
-                final DeviceContact contact = makeContact(contactId, contactName);
-                deviceContactsList.add(contact);
+                final DeviceContact contact = getDeviceContact(contactId, contactName);
+                if(contact!=null)
+                {
+                    deviceContactsList.add(contact);
+                }
             }
         }
         cursor.close();
@@ -95,10 +98,14 @@ public class DeviceManager
                 new String[]{contactId}, null);
     }
 
-    private DeviceContact makeContact(String contactId, final String contactName)
+    private DeviceContact getDeviceContact(String contactId, final String contactName)
     {
         final List<String> contactNumbers = getPhoneNumbersForContact(contactId);
         contactId = mDeviceId + "#" + contactId;
+        if(contactNumbers.size()<=0)
+        {
+            return null;
+        }
         DeviceContact deviceContact = new DeviceContact(contactId, contactName, contactNumbers.get(0), 0);
         return deviceContact;
     }
