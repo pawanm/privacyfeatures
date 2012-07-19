@@ -124,11 +124,11 @@ public class ContactsActivity extends ActionBarActivity
     {
         int itemId = item.getItemId();
         int newContactState=0;
-        if (itemId == R.id.menu_make_favourite)
+       /* if (itemId == R.id.menu_make_favourite)
         {
             newContactState=1;
-        }
-        else if (itemId == R.id.menu_make_restricted)
+        }*/
+        if (itemId == R.id.menu_make_restricted)
         {
             newContactState=-1;
         }
