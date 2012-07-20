@@ -43,14 +43,9 @@ public class CallListenerManager extends PhoneStateListener
             audioStateManager.changeRingerMode(contactState);
             ringerModeChangedFlag=true;
         }
-        if(TelephonyManager.CALL_STATE_OFFHOOK == state)
-        {
-            Logging.debug("CallListener: Outgoing");
-        }
-        if(TelephonyManager.CALL_STATE_IDLE == state && ringerModeChangedFlag)
+        else if(TelephonyManager.CALL_STATE_IDLE == state && ringerModeChangedFlag)
         {
             audioStateManager.resetRingerMode(currentRingerMode);
-            Logging.debug("Ringer reset to: " + currentRingerMode);
             ringerModeChangedFlag=false;
             callLogManager.deleteCallLogs(lastCallNo);
         }
