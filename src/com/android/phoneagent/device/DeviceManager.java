@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
 import com.android.phoneagent.database.DBHelper;
+import com.android.phoneagent.entities.ContactState;
 import com.android.phoneagent.entities.DeviceContact;
 
 import java.util.ArrayList;
@@ -106,7 +107,7 @@ public class DeviceManager
         {
             return null;
         }
-        DeviceContact deviceContact = new DeviceContact(contactId, contactName, contactNumbers.get(0), 0);
+        DeviceContact deviceContact = new DeviceContact(contactId, contactName, contactNumbers.get(0), ContactState.NORMAL);
         return deviceContact;
     }
 

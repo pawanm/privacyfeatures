@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import com.android.phoneagent.entities.ContactState;
 import com.android.phoneagent.entities.DeviceContact;
 
 import java.util.*;
@@ -46,11 +47,31 @@ public class DeviceContactStore
         contentValues.put(fields.ContactId.toString(),contact.getContactId());
         contentValues.put(fields.ContactName.toString(),contact.getContactName());
         contentValues.put(fields.ContactNo.toString(),contact.getContactNumber());
-        contentValues.put(fields.ContactState.toString(),contact.getContactState());
+        contentValues.put(fields.ContactState.toString(),getIntForEnum(contact.getContactState()));
 
         return contentValues;
     }
 
+
+    private int getIntForEnum(ContactState contactState)
+    {
+        switch (contactState)
+        {
+            case FAVOURITE:return 1;
+            case RESTRICTED:return -1;
+        }
+        return 0;
+    }
+
+    private ContactState getEnumForInt(int code)
+    {
+        switch (code)
+        {
+            case 1:return ContactState.FAVOURITE;
+            case -1:return ContactState.RESTRICTED;
+        }
+        return ContactState.NORMAL;
+    }
 
     private ContentValues convertToContentValues(Map<String, String> values)
     {
@@ -75,7 +96,7 @@ public class DeviceContactStore
 
         while (resultCursor.moveToNext())
         {
-            DeviceContact entry = new DeviceContact(resultCursor.getString(0), resultCursor.getString(1), resultCursor.getString(2), Integer.parseInt(resultCursor.getString(3)));
+            DeviceContact entry = new DeviceContact(resultCursor.getString(0), resultCursor.getString(1), resultCursor.getString(2), getEnumForInt(Integer.parseInt(resultCursor.getString(3))));
             entries.add(entry);
         }
 
