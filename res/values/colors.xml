@@ -46,4 +46,8 @@
     <color name="suggest_linking_background">#ffffff</color>
     <color name="black">#000000</color>
     <color name="tab_background">#353535</color>
+    <color name="list_item">#393838</color>
+    <color name="list_item_subtext_normal">#6f6f6f</color>
+    <color name="list_item_subtext_error">#dc5c38</color>
+
 </resources>

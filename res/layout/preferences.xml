@@ -2,7 +2,6 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:background="@drawable/list_item_selector"
         android:layout_height="wrap_content"
         android:minHeight="40sp"
         android:gravity="center_vertical"
@@ -17,13 +16,14 @@
         <TextView android:id="@android:id/title"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                 />
+                  style="@style/list_item"/>
         <TextView android:id="@android:id/summary"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_below="@android:id/title"
                   android:layout_alignLeft="@android:id/title"
                   android:textAppearance="?android:attr/textAppearanceSmall"
+                  style="@style/list_item_subtext"
                   android:maxLines="2"/>
     </RelativeLayout>
     <!-- Preference should place its actual preference widget here. -->
