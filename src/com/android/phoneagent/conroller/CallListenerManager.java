@@ -3,6 +3,7 @@ package com.android.phoneagent.conroller;
 import android.content.Context;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import com.android.phoneagent.entities.ContactState;
 import com.android.phoneagent.entities.DeviceContact;
 import com.android.phoneagent.factory.AppFactory;
 import com.android.phoneagent.utils.Logging;
@@ -31,16 +32,15 @@ public class CallListenerManager extends PhoneStateListener
     {
         if(TelephonyManager.CALL_STATE_RINGING == state)
         {
-            int code = getNumberStatus(incomingNumber);
+            ContactState contactState = getNumberStatus(incomingNumber);
             lastCallNo=incomingNumber;
-            Logging.debug("CallListener: Incoming call from " + incomingNumber + ", contactStatus: " + code);
+            Logging.debug("CallListener: Incoming call from " + incomingNumber + ", contactStatus: " + contactState);
 
-            if(code==0)
+            if(contactState.equals(ContactState.NORMAL))
                 return;
 
             currentRingerMode = audioStateManager.getRingerMode();
-            audioStateManager.changeRingerMode(code);
-            callLogManager.setAirplaneMode(true);
+            audioStateManager.changeRingerMode(contactState);
             ringerModeChangedFlag=true;
         }
         if(TelephonyManager.CALL_STATE_OFFHOOK == state)
@@ -53,11 +53,10 @@ public class CallListenerManager extends PhoneStateListener
             Logging.debug("Ringer reset to: " + currentRingerMode);
             ringerModeChangedFlag=false;
             callLogManager.deleteCallLogs(lastCallNo);
-            callLogManager.setAirplaneMode(false);
         }
     }
 
-    private int getNumberStatus(String incomingNo)
+    private ContactState getNumberStatus(String incomingNo)
     {
         List<DeviceContact> list = contactManager.getRestrictedContactList();
         for(DeviceContact contact: list)
@@ -65,7 +64,7 @@ public class CallListenerManager extends PhoneStateListener
             Logging.debug("Restricted: " + contact.getContactNumber());
             if(incomingNo.contains(contact.getContactLastDigitsFromNumber()))
             {
-                return -1;
+                return ContactState.RESTRICTED;
             }
         }
 
@@ -75,10 +74,10 @@ public class CallListenerManager extends PhoneStateListener
             Logging.debug("Favourite: " + contact.getContactNumber());
             if(incomingNo.contains(contact.getContactLastDigitsFromNumber()))
             {
-                return 1;
+                return ContactState.FAVOURITE;
             }
         }
 
-        return 0;
+        return ContactState.NORMAL;
     }
 }

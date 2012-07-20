@@ -2,6 +2,7 @@ package com.android.phoneagent.conroller;
 
 import android.content.Context;
 import android.media.AudioManager;
+import com.android.phoneagent.entities.ContactState;
 
 public class AudioStateManager
 {
@@ -12,12 +13,12 @@ public class AudioStateManager
       audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 
-    public void changeRingerMode(int ringerMode)
+    public void changeRingerMode(ContactState state)
     {
-        switch (ringerMode)
+        switch (state)
         {
-            case -1:audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);break;
-            case 1:audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);break;
+            case RESTRICTED:audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);break;
+            case FAVOURITE:audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);break;
         }
     }
 
