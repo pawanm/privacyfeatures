@@ -32,7 +32,7 @@ public class ContactsActivity extends ActionBarActivity
     private ContactManager contactManager;
     private DeviceContact selectedContact;
     private ActionBarHelper actionBarHelper;
-    private CurrentDisplayMode currentDisplayMode;
+    private CurrentDisplayMode currentDisplayMode = CurrentDisplayMode.ALLCONTACTS;
 
     @Override
     public void onCreate(Bundle savedInstanceState)

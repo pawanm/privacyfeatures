@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.android.phoneagent.entities.ContactState;
 import com.android.phoneagent.entities.DeviceContact;
+import com.android.phoneagent.utils.Logging;
 
 import java.util.*;
 
@@ -34,7 +35,7 @@ public class DeviceContactStore
             values.put(fields.ContactId.toString(), deviceContact.getContactId());
             values.put(fields.ContactName.toString(), deviceContact.getContactName());
             values.put(fields.ContactNo.toString(), deviceContact.getContactNumber());
-            values.put(fields.ContactState.toString(), deviceContact.getContactState()+"");
+            values.put(fields.ContactState.toString(), getIntForEnum(deviceContact.getContactState())+"");
 
             mDatabase.insert(DEVICE_CONTACTS_TABLE, null ,convertToContentValues(values));
         }
@@ -96,7 +97,10 @@ public class DeviceContactStore
 
         while (resultCursor.moveToNext())
         {
-            DeviceContact entry = new DeviceContact(resultCursor.getString(0), resultCursor.getString(1), resultCursor.getString(2), getEnumForInt(Integer.parseInt(resultCursor.getString(3))));
+            Logging.debug("Status Cursor: " + resultCursor.getString(3));
+            int code = Integer.parseInt(resultCursor.getString(3));
+            Logging.debug("StatusCode: " + code);
+            DeviceContact entry = new DeviceContact(resultCursor.getString(0), resultCursor.getString(1), resultCursor.getString(2), getEnumForInt(code));
             entries.add(entry);
         }
 
