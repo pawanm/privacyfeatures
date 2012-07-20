@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.android.phoneagent.R;
 import com.android.phoneagent.adapters.ContactsAdapter;
 import com.android.phoneagent.conroller.ContactManager;
+import com.android.phoneagent.entities.ContactState;
 import com.android.phoneagent.entities.DeviceContact;
 import com.android.phoneagent.factory.AppFactory;
 import com.android.phoneagent.utils.Utils;
@@ -30,7 +31,7 @@ public class ContactsActivity extends ActionBarActivity
     private ContactManager contactManager;
     private DeviceContact selectedContact;
     private ActionBarHelper actionBarHelper;
-    private int contactsDisplayMode=0;
+    private CurrentDisplayMode currentDisplayMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -40,7 +41,12 @@ public class ContactsActivity extends ActionBarActivity
         setContentView(R.layout.activity_contacts);
         init();
         Utils.overrideFontToRobotoBold(findViewById(R.layout.activity_contacts));
+        currentDisplayMode = CurrentDisplayMode.ALLCONTACTS;
+    }
 
+    private enum CurrentDisplayMode
+    {
+        ALLCONTACTS, FAVOURITELIST, RESTRICTEDLIST
     }
 
     @Override
@@ -51,6 +57,7 @@ public class ContactsActivity extends ActionBarActivity
         actionBarHelper.setDisplayShowHomeEnabled(false);
 
     }
+
     @Override
     public void onStart()
     {
@@ -76,7 +83,7 @@ public class ContactsActivity extends ActionBarActivity
 
         showProgressBar(true);
 
-        refreshList(false);
+        refreshList();
     }
 
     private void addOnClickListener()
@@ -103,10 +110,26 @@ public class ContactsActivity extends ActionBarActivity
         int itemId = item.getItemId();
         if (itemId == android.R.id.home)
         {
-            refreshList(true);
+            setCurrentDisplayMode();
+            refreshList();
         }
         return true;
     }
+
+    private void setCurrentDisplayMode()
+    {
+        if (currentDisplayMode == CurrentDisplayMode.ALLCONTACTS)
+        {
+            currentDisplayMode = CurrentDisplayMode.RESTRICTEDLIST;
+        } else if (currentDisplayMode == CurrentDisplayMode.RESTRICTEDLIST)
+        {
+            currentDisplayMode = CurrentDisplayMode.FAVOURITELIST;
+        } else if (currentDisplayMode == CurrentDisplayMode.FAVOURITELIST)
+        {
+            currentDisplayMode = CurrentDisplayMode.ALLCONTACTS;
+        }
+    }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
@@ -123,47 +146,47 @@ public class ContactsActivity extends ActionBarActivity
     public boolean onContextItemSelected(MenuItem item)
     {
         int itemId = item.getItemId();
-        int newContactState=0;
-       /* if (itemId == R.id.menu_make_favourite)
+        ContactState newContactState;
+        if (itemId == R.id.menu_make_favourite)
         {
-            newContactState=1;
-        }*/
+            newContactState = ContactState.FAVOURITE;
+        }
         if (itemId == R.id.menu_make_restricted)
         {
-            newContactState=-1;
+            newContactState = ContactState.RESTRICTED;
         }
         else if (itemId == R.id.menu_reset)
         {
-            newContactState=0;
+            newContactState = ContactState.NORMAL;
         }
         else
         {
             return super.onContextItemSelected(item);
         }
+
         contactManager.updateContact(selectedContact, newContactState);
-        refreshList(false);
+        refreshList();
         return true;
     }
 
-    private void refreshList(final boolean toggleFlag)
+    private void refreshList()
     {
         new Thread(new Runnable()
         {
             public void run()
             {
                 List<DeviceContact> deviceContacts = new ArrayList<DeviceContact>();
-                if(toggleFlag==false)
+                switch (currentDisplayMode)
                 {
-                    contactsDisplayMode=0;
-                }
-                switch (contactsDisplayMode)
-                {
-                    case 0: deviceContacts = contactManager.getAllContacts();
-                            contactsDisplayMode=-1;break;
-                    case 1: deviceContacts = contactManager.getFavouriteList();
-                            contactsDisplayMode=-1;break;
-                    case -1: deviceContacts = contactManager.getRestrictedContactList();
-                            contactsDisplayMode=0;break;
+                    case ALLCONTACTS:
+                        deviceContacts = contactManager.getAllContacts();
+                        break;
+                    case RESTRICTEDLIST:
+                        deviceContacts = contactManager.getRestrictedContactList();
+                        break;
+                    case FAVOURITELIST:
+                        deviceContacts = contactManager.getFavouriteList();
+                        break;
                 }
                 updateListView(deviceContacts);
             }
@@ -179,7 +202,7 @@ public class ContactsActivity extends ActionBarActivity
                 contactsAdapter.setContacts(deviceContacts);
                 contactsAdapter.notifyDataSetChanged();
                 showProgressBar(false);
-                setActivityTitle();
+                setActivityTitle(currentDisplayMode);
             }
         };
 
@@ -187,19 +210,18 @@ public class ContactsActivity extends ActionBarActivity
 
     }
 
-    private void setActivityTitle()
+    private void setActivityTitle(CurrentDisplayMode state)
     {
-        if(contactsDisplayMode==0)
+        switch (state)
         {
-            setTitle("Restricted Contacts");
-        }
-        else if(contactsDisplayMode==1)
-        {
-            setTitle("All Contacts");
-        }
-        else if(contactsDisplayMode==-1)
-        {
-            setTitle("All Contacts");
+            case FAVOURITELIST:
+                setTitle("Favourite");
+                break;
+            case RESTRICTEDLIST:
+                setTitle("Restricted");
+                break;
+            case ALLCONTACTS:
+                setTitle("AllContacts");
         }
     }
 

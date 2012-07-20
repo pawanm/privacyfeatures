@@ -3,6 +3,7 @@ package com.android.phoneagent.conroller;
 import android.content.Context;
 import com.android.phoneagent.database.DeviceContactStore;
 import com.android.phoneagent.device.DeviceManager;
+import com.android.phoneagent.entities.ContactState;
 import com.android.phoneagent.entities.DeviceContact;
 import com.android.phoneagent.utils.Logging;
 
@@ -66,7 +67,7 @@ public class ContactManager
         allContactsList = getAllContacts();
         for (DeviceContact contact : allContactsList)
         {
-            if (contact.getContactState() == contactState)
+            if (contact.getContactState().equals(contactState))
             {
                 filteredContacts.add(contact);
             }
@@ -74,10 +75,10 @@ public class ContactManager
         return getSortedList(filteredContacts);
     }
 
-    public boolean updateContact(DeviceContact contact, int newContactState)
+    public boolean updateContact(DeviceContact contact, ContactState contactState)
     {
         DeviceContact newContact = contact;
-        newContact.setContactState(newContactState);
+        newContact.setContactState(contactState);
 
         contactStore.updateContact(newContact);
         allContactsList.remove(contact);

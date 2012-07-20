@@ -7,10 +7,10 @@ public class DeviceContact
     private String contactName;
     private String contactNumber;
     private String contactLastDigitsFromNumber;
-    private int contactState;
+    private ContactState contactState;
 
 
-    public DeviceContact(String contactId, String contactName, String contactNumber, int statusCode)
+    public DeviceContact(String contactId, String contactName, String contactNumber, ContactState statusCode)
     {
         this.contactId = contactId;
         this.contactName = contactName;
@@ -34,7 +34,7 @@ public class DeviceContact
         return contactNumber;
     }
 
-    public int getContactState()
+    public ContactState getContactState()
     {
         return contactState;
     }
@@ -44,9 +44,9 @@ public class DeviceContact
         return contactLastDigitsFromNumber;
     }
 
-    public void setContactState(int code)
+    public void setContactState(ContactState state)
     {
-        contactState =code;
+        contactState=state;
     }
 
 

@@ -6,19 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.android.phoneagent.R;
+import com.android.phoneagent.entities.ContactState;
 
 public class Utils
 {
     private static Typeface FONT_REGULAR;
     private static Typeface FONT_BOLD;
 
-    public static int getColorForContactState(int contactState)
+    public static int getColorForContactState(ContactState contactState)
     {
         switch (contactState)
         {
-            case 1:
+            case FAVOURITE:
                 return R.color.favouriteContact;
-            case -1:
+            case RESTRICTED:
                 return R.color.restrictedContact;
             default:
                 return R.color.normalContact;
