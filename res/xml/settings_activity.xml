@@ -10,7 +10,7 @@
     <CheckBoxPreference
             android:key="settings_show_app_running_status"
             android:title="Permanent Service Notification"
-            android:suVibratmmary="Displays service running notification"
+            android:summary="Displays service running notification"
             android:layout="@layout/preferences"/>
 </PreferenceScreen>
 
