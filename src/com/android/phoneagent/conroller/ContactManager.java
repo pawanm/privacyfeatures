@@ -53,15 +53,15 @@ public class ContactManager
 
     public List<DeviceContact> getRestrictedContactList()
     {
-        return getFilteredContacts(-1);
+        return getFilteredContacts(ContactState.RESTRICTED);
     }
 
     public List<DeviceContact> getFavouriteList()
     {
-        return getFilteredContacts(1);
+        return getFilteredContacts(ContactState.FAVOURITE);
     }
 
-    private List<DeviceContact> getFilteredContacts(int contactState)
+    private List<DeviceContact> getFilteredContacts(ContactState contactState)
     {
         List<DeviceContact> filteredContacts = new ArrayList<DeviceContact>();
         allContactsList = getAllContacts();

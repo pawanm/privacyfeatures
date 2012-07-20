@@ -121,10 +121,12 @@ public class ContactsActivity extends ActionBarActivity
         if (currentDisplayMode == CurrentDisplayMode.ALLCONTACTS)
         {
             currentDisplayMode = CurrentDisplayMode.RESTRICTEDLIST;
-        } else if (currentDisplayMode == CurrentDisplayMode.RESTRICTEDLIST)
+        }
+        else if (currentDisplayMode == CurrentDisplayMode.RESTRICTEDLIST)
         {
             currentDisplayMode = CurrentDisplayMode.FAVOURITELIST;
-        } else if (currentDisplayMode == CurrentDisplayMode.FAVOURITELIST)
+        }
+        else
         {
             currentDisplayMode = CurrentDisplayMode.ALLCONTACTS;
         }
@@ -146,7 +148,7 @@ public class ContactsActivity extends ActionBarActivity
     public boolean onContextItemSelected(MenuItem item)
     {
         int itemId = item.getItemId();
-        ContactState newContactState;
+        ContactState newContactState=null;
         if (itemId == R.id.menu_make_favourite)
         {
             newContactState = ContactState.FAVOURITE;
@@ -159,11 +161,11 @@ public class ContactsActivity extends ActionBarActivity
         {
             newContactState = ContactState.NORMAL;
         }
-        else
-        {
-            return super.onContextItemSelected(item);
-        }
 
+        if(newContactState==null)
+        {
+            return false;
+        }
         contactManager.updateContact(selectedContact, newContactState);
         refreshList();
         return true;
