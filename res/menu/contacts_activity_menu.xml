@@ -2,11 +2,11 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/contacts_menu_search"
+   <!-- <item android:id="@+id/contacts_menu_search"
           android:icon="@drawable/menu_search"
           android:title="@string/menu_contact_search"
           android:showAsAction="always"
-            />
+            />-->
 
     <item android:id="@+id/contacts_menu_preferences"
           android:icon="@drawable/menu_acceptall"
