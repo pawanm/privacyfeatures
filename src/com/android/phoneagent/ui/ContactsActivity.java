@@ -1,5 +1,6 @@
 package com.android.phoneagent.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -112,6 +113,10 @@ public class ContactsActivity extends ActionBarActivity
         {
             setCurrentDisplayMode();
             refreshList();
+        }
+        else if(itemId ==  R.id.contacts_menu_preferences)
+        {
+            startActivity(new Intent(this,SettingsActivity.class));
         }
         return true;
     }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+            android:key="settings_disable_app"
+            android:title="Disable Application"
+            android:summary="If checked application wont work, phone will behave normally"
+            android:layout="@layout/preferences"
+            android:defaultValue="true"/>
+    <CheckBoxPreference
+            android:key="settings_show_app_running_status"
+            android:title="Permanent Service Notification"
+            android:suVibratmmary="Displays service running notification"
+            android:layout="@layout/preferences"/>
+</PreferenceScreen>
+
