@@ -54,25 +54,26 @@ public class CallListenerManager extends PhoneStateListener
     private ContactState getNumberStatus(String incomingNo)
     {
         List<DeviceContact> list = contactManager.getRestrictedContactList();
-        for(DeviceContact contact: list)
-        {
-            Logging.debug("Restricted: " + contact.getContactNumber());
-            if(incomingNo.contains(contact.getContactLastDigitsFromNumber()))
-            {
-                return ContactState.RESTRICTED;
-            }
-        }
+        if (contactExists(incomingNo, list))
+            return ContactState.RESTRICTED;
 
         list = contactManager.getFavouriteList();
-        for(DeviceContact contact: list)
-        {
-            Logging.debug("Favourite: " + contact.getContactNumber());
-            if(incomingNo.contains(contact.getContactLastDigitsFromNumber()))
-            {
-                return ContactState.FAVOURITE;
-            }
-        }
+        if (contactExists(incomingNo, list))
+            return ContactState.FAVOURITE;
 
         return ContactState.NORMAL;
+    }
+
+    private boolean contactExists(String incomingNo, List<DeviceContact> list)
+    {
+        for(DeviceContact contact: list)
+        {
+            Logging.debug(contact.getContactState() + ": " + contact.getContactNumber());
+            if(incomingNo.contains(contact.getContactLastDigitsFromNumber()))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

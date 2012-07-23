@@ -10,15 +10,19 @@ public class AudioStateManager
 
     public AudioStateManager(Context context)
     {
-      audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 
     public void changeRingerMode(ContactState state)
     {
         switch (state)
         {
-            case RESTRICTED:audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);break;
-            case FAVOURITE:audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);break;
+            case RESTRICTED:
+                audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                break;
+            case FAVOURITE:
+                audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                break;
         }
     }
 
