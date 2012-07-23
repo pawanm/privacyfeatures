@@ -75,7 +75,7 @@ public class ContactManager
         return getSortedList(filteredContacts);
     }
 
-    public boolean updateContact(DeviceContact contact, ContactState contactState)
+    public synchronized boolean updateContact(DeviceContact contact, ContactState contactState)
     {
         DeviceContact newContact = contact;
         newContact.setContactState(contactState);
