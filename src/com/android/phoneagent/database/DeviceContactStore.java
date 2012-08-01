@@ -6,9 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.android.phoneagent.entities.ContactState;
 import com.android.phoneagent.entities.DeviceContact;
-import com.android.phoneagent.utils.Logging;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -97,9 +99,7 @@ public class DeviceContactStore
 
         while (resultCursor.moveToNext())
         {
-            Logging.debug("Status Cursor: " + resultCursor.getString(3));
             int code = Integer.parseInt(resultCursor.getString(3));
-            Logging.debug("StatusCode: " + code);
             DeviceContact entry = new DeviceContact(resultCursor.getString(0), resultCursor.getString(1), resultCursor.getString(2), getEnumForInt(code));
             entries.add(entry);
         }

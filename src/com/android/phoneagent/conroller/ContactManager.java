@@ -45,12 +45,17 @@ public class ContactManager
                 {
                     Iterator<DeviceContact> deviceContacts = deviceManager.getDeviceContacts(true).iterator();
                     Looper.prepare();
+
+                    Logging.debug("contact store size: " + contactStore.getDeviceContacts().size());
+                    Logging.debug("device contact size: " + deviceManager.getDeviceContacts(true).size());
+
                     while (deviceContacts.hasNext())
                     {
                         DeviceContact deviceContact = deviceContacts.next();
                         if(!isContactExistsInStore(deviceContact))
                         {
                             contactStore.addContact(deviceContact);
+                            Logging.debug("new contact added: " + deviceContact.getContactId() + "," +  deviceContact.getContactName());
                         }
                         Looper.loop();
                     }
@@ -71,7 +76,7 @@ public class ContactManager
         boolean flag=false;
         for(DeviceContact storeContact: contactStore.getDeviceContacts())
         {
-            if(storeContact.getContactId().equals(deviceContact.getContactId()))
+            if(storeContact.getContactNumber().equals(deviceContact.getContactNumber()))
             {
                flag=true;
                break;

@@ -64,6 +64,7 @@ public class ContactsActivity extends ActionBarActivity
     public void onStart()
     {
         super.onStart();
+        refreshList();
     }
 
     private void init()
