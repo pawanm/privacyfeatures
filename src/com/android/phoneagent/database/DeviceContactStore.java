@@ -32,6 +32,7 @@ public class DeviceContactStore
         while (deviceContactIterator.hasNext())
         {
             DeviceContact deviceContact = deviceContactIterator.next();
+
             values.put(fields.ContactId.toString(), deviceContact.getContactId());
             values.put(fields.ContactName.toString(), deviceContact.getContactName());
             values.put(fields.ContactNo.toString(), deviceContact.getContactNumber());
