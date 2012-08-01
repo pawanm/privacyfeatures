@@ -127,8 +127,14 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
                     public void failure(String result)
                     {
-                        dismissDialog(0);
-                        showDialog(-1);
+                        try
+                        {
+                            dismissDialog(0);
+                            showDialog(-1);
+                        }catch (Exception ex)
+                        {
+
+                        }
                     }
                 });
 
