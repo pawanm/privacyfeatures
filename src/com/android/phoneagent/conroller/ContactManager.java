@@ -5,6 +5,7 @@ import com.android.phoneagent.database.DeviceContactStore;
 import com.android.phoneagent.device.DeviceManager;
 import com.android.phoneagent.entities.ContactState;
 import com.android.phoneagent.entities.DeviceContact;
+import com.android.phoneagent.listeners.ICallBack;
 import com.android.phoneagent.utils.Logging;
 
 import java.util.ArrayList;
@@ -36,17 +37,46 @@ public class ContactManager
        return instance;
     }
 
-    public void updateContactList()
+    public void updateContactList(final ICallBack<String,String> callBack)
     {
-       List<DeviceContact> contactList = deviceManager.getDeviceContacts(true);
-       for(DeviceContact contact: contactList)
+       try
        {
-           if(!allContactsList.contains(contact))
+           Thread thread = new Thread(new Runnable()
            {
-               allContactsList.add(contact);
-               updateContact(contact,ContactState.NORMAL);
-           }
+               public void run()
+               {
+                   List<DeviceContact> deviceContacts = deviceManager.getDeviceContacts(true);
+                   for(DeviceContact deviceContact: deviceContacts)
+                   {
+                       if(!isContactExistsInStore(deviceContact))
+                       {
+                           contactStore.addContact(deviceContact);
+                       }
+
+                   }
+                   callBack.success("done");
+               }
+           });
+           thread.start();
        }
+       catch (Exception ex)
+       {
+           callBack.failure(ex.getMessage());
+       }
+    }
+
+    private boolean isContactExistsInStore(DeviceContact deviceContact)
+    {
+        boolean flag=false;
+        for(DeviceContact storeContact: contactStore.getDeviceContacts())
+        {
+            if(storeContact.getContactId().equals(deviceContact.getContactId()))
+            {
+               flag=true;
+               break;
+            }
+        }
+        return flag;
     }
 
     public List<DeviceContact> getAllContacts()

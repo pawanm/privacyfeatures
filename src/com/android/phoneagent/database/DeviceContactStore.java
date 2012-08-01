@@ -117,5 +117,16 @@ public class DeviceContactStore
 
     }
 
+    public synchronized void addContact(DeviceContact deviceContact)
+    {
+        Map<String, String> values = new HashMap<String, String>();
+        values.put(fields.ContactId.toString(), deviceContact.getContactId());
+        values.put(fields.ContactName.toString(), deviceContact.getContactName());
+        values.put(fields.ContactNo.toString(), deviceContact.getContactNumber());
+        values.put(fields.ContactState.toString(), getIntForEnum(deviceContact.getContactState())+"");
+
+        mDatabase.insert(DEVICE_CONTACTS_TABLE, null ,convertToContentValues(values));
+
+    }
 
 }

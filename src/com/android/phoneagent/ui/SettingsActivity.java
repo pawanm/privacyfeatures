@@ -2,6 +2,7 @@ package com.android.phoneagent.ui;
 
 import android.app.*;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -11,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.android.phoneagent.R;
 import com.android.phoneagent.conroller.ContactManager;
+import com.android.phoneagent.listeners.ICallBack;
 import compatibility.actionbar.ActionBarHelper;
 import compatibility.actionbar.ActionBarPreferenceActivity;
 
@@ -65,6 +67,16 @@ public class SettingsActivity extends ActionBarPreferenceActivity
         AlertDialog dialog = new AlertDialog.Builder(this).create();
         dialog.setTitle("Refreshing Contact List");
         dialog.setMessage("Please wait while synchronizing your contact list");
+        if(id==-1)
+        {
+            dialog.setButton("Close", new DialogInterface.OnClickListener()
+            {
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+
+                }
+            });
+        }
         return dialog;
     }
 
@@ -85,7 +97,8 @@ public class SettingsActivity extends ActionBarPreferenceActivity
                 if (showNotification)
                 {
                     showNotification();
-                } else
+                }
+                else
                 {
                     NotificationManager notificationManager = (NotificationManager)
                             getSystemService(NOTIFICATION_SERVICE);
@@ -105,8 +118,20 @@ public class SettingsActivity extends ActionBarPreferenceActivity
             {
                 showDialog(0);
                 ContactManager contactManager = ContactManager.getInstance(getApplicationContext());
-                contactManager.updateContactList();
-                dismissDialog(0);
+                contactManager.updateContactList(new ICallBack<String, String>()
+                {
+                    public void success(String result)
+                    {
+                        dismissDialog(0);
+                    }
+
+                    public void failure(String result)
+                    {
+                        dismissDialog(0);
+                        showDialog(-1);
+                    }
+                });
+
                 return true;
             }
         });
