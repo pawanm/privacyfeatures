@@ -1,6 +1,8 @@
 package com.android.phoneagent.conroller;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import com.android.phoneagent.entities.ContactState;
@@ -18,18 +20,26 @@ public class CallListenerManager extends PhoneStateListener
     private int currentRingerMode;
     private boolean ringerModeChangedFlag=false;
     private String lastCallNo;
+    SharedPreferences sharedPrefs;
 
     public CallListenerManager(Context context)
     {
         audioStateManager = new AudioStateManager(context);
         contactManager = AppFactory.getContactManager(context);
         callLogManager = new CallLogManager(context);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
 
     @Override
     public void onCallStateChanged (int state, String incomingNumber)
     {
+        if(sharedPrefs.getBoolean("settings_disable_app",false))
+        {
+            Logging.debug("returning");
+            return;
+        }
+
         if(TelephonyManager.CALL_STATE_RINGING == state)
         {
             ContactState contactState = getNumberStatus(incomingNumber);
@@ -43,7 +53,7 @@ public class CallListenerManager extends PhoneStateListener
             audioStateManager.changeRingerMode(contactState);
             ringerModeChangedFlag=true;
         }
-        else if(TelephonyManager.CALL_STATE_IDLE == state && ringerModeChangedFlag)
+        else if (ringerModeChangedFlag)
         {
             audioStateManager.resetRingerMode(currentRingerMode);
             ringerModeChangedFlag=false;
