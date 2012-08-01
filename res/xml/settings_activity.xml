@@ -4,12 +4,14 @@
     <CheckBoxPreference
             android:key="settings_disable_app"
             android:title="Disable Application"
-            android:summary="If checked phone will behave normally, application wont work"
+            android:summary="If checked all features of this application will be disabled"
+             android:checked="false"
             android:layout="@layout/preferences"/>
     <CheckBoxPreference
             android:key="settings_show_app_running_status"
             android:title="Permanent Service Notification"
             android:summary="Display app running notification"
+            android:checked="false"
             android:layout="@layout/preferences"/>
 
     <!--
