@@ -7,11 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.android.phoneagent.entities.ContactState;
 import com.android.phoneagent.entities.DeviceContact;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
 
 
 public class DeviceContactStore
@@ -32,8 +28,10 @@ public class DeviceContactStore
     public synchronized void saveDeviceContacts(List<DeviceContact> deviceContacts)
     {
         Map<String, String> values = new HashMap<String, String>();
-        for (DeviceContact deviceContact : deviceContacts)
+        Iterator<DeviceContact> deviceContactIterator = deviceContacts.iterator();
+        while (deviceContactIterator.hasNext())
         {
+            DeviceContact deviceContact = deviceContactIterator.next();
             values.put(fields.ContactId.toString(), deviceContact.getContactId());
             values.put(fields.ContactName.toString(), deviceContact.getContactName());
             values.put(fields.ContactNo.toString(), deviceContact.getContactNumber());
