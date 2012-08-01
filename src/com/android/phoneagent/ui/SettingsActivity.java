@@ -64,8 +64,8 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
     protected Dialog onCreateDialog(int id)
     {
-        AlertDialog dialog = new AlertDialog.Builder(this).create();
-        dialog.setTitle("Refreshing Contact List");
+        AlertDialog dialog = new ProgressDialog(this);
+        dialog.setTitle("Refreshing ...");
         dialog.setMessage("Please wait while synchronizing your contact list");
         if(id==-1)
         {

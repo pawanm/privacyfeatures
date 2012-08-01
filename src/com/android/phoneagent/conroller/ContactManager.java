@@ -1,6 +1,7 @@
 package com.android.phoneagent.conroller;
 
 import android.content.Context;
+import android.os.Looper;
 import com.android.phoneagent.database.DeviceContactStore;
 import com.android.phoneagent.device.DeviceManager;
 import com.android.phoneagent.entities.ContactState;
@@ -8,10 +9,7 @@ import com.android.phoneagent.entities.DeviceContact;
 import com.android.phoneagent.listeners.ICallBack;
 import com.android.phoneagent.utils.Logging;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class ContactManager
 {
@@ -37,32 +35,35 @@ public class ContactManager
        return instance;
     }
 
-    public void updateContactList(final ICallBack<String,String> callBack)
+    public synchronized void updateContactList(final ICallBack<String,String> callBack)
     {
-       try
-       {
-           Thread thread = new Thread(new Runnable()
-           {
-               public void run()
-               {
-                   List<DeviceContact> deviceContacts = deviceManager.getDeviceContacts(true);
-                   for(DeviceContact deviceContact: deviceContacts)
-                   {
-                       if(!isContactExistsInStore(deviceContact))
-                       {
-                           contactStore.addContact(deviceContact);
-                       }
-
-                   }
-                   callBack.success("done");
-               }
-           });
-           thread.start();
-       }
-       catch (Exception ex)
-       {
-           callBack.failure(ex.getMessage());
-       }
+        Thread thread = new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try
+                {
+                    Iterator<DeviceContact> deviceContacts = deviceManager.getDeviceContacts(true).iterator();
+                    Looper.prepare();
+                    while (deviceContacts.hasNext())
+                    {
+                        DeviceContact deviceContact = deviceContacts.next();
+                        if(!isContactExistsInStore(deviceContact))
+                        {
+                            contactStore.addContact(deviceContact);
+                        }
+                        Looper.loop();
+                    }
+                    callBack.success("done");
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                    callBack.failure(ex.getMessage());
+                }
+            }
+        });
+        thread.start();
     }
 
     private boolean isContactExistsInStore(DeviceContact deviceContact)
