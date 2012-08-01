@@ -14,16 +14,16 @@
             android:checked="false"
            />
 
-    <EditTextPreference
+    <Preference
             android:name="refresh_contact_list"
             android:summary="Click here to refresh contact list"
             android:title="Refresh Contact List"
             android:key="refresh_contact_list" />
 
-    <EditTextPreference
+    <Preference
             android:name="help"
-            android:summary="How it works !!"
-            android:title="Help|About"
+            android:summary="About App and how it works !!"
+            android:title="Help"
             android:key="help" />
 
     <!--
