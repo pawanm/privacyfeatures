@@ -49,7 +49,7 @@ public class SettingsActivity extends PreferenceActivity
         notification.flags |= Notification.FLAG_NO_CLEAR;
 
         PendingIntent pi = PendingIntent.getActivity(this, 0, getIntent(), PendingIntent.FLAG_UPDATE_CURRENT);
-        notification.setLatestEventInfo(this, "AppAgent", "Phone Agent Is Running", pi);
+        notification.setLatestEventInfo(this, "PhoneAgent", "Phone Agent Is Running", pi);
 
 
         notificationManager.notify(0, notification);

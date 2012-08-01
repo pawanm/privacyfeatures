@@ -6,13 +6,31 @@
             android:title="Disable Application"
             android:summary="If checked all features of this application will be disabled"
              android:checked="false"
-            android:layout="@layout/preferences"/>
+            />
     <CheckBoxPreference
             android:key="settings_show_app_running_status"
             android:title="Permanent Service Notification"
             android:summary="Display app running notification"
             android:checked="false"
-            android:layout="@layout/preferences"/>
+           />
+
+    <EditTextPreference
+            android:name="refresh_contact_list"
+            android:summary="Click here to refresh contact list"
+            android:title="Refresh Contact List"
+            android:key="refresh_contact_list" />
+
+    <EditTextPreference
+            android:name="feedback"
+            android:summary="Need a feature ? Have feedback ?"
+            android:title="Feedback"
+            android:key="feedback" />
+
+    <EditTextPreference
+            android:name="about_us"
+            android:summary="How it works ?"
+            android:title="About PhoneAgent"
+            android:key="about_us" />
 
     <!--
     Reset/Favourite/Restrict all contacts
