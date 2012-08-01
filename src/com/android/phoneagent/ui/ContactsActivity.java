@@ -54,6 +54,7 @@ public class ContactsActivity extends ActionBarActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
+        actionBarHelper = getActionBarHelper();
         actionBarHelper.setDisplayHomeAsUpEnabled(true);
         actionBarHelper.setDisplayShowHomeEnabled(false);
 

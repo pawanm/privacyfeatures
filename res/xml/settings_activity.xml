@@ -23,7 +23,7 @@
     <EditTextPreference
             android:name="help"
             android:summary="How it works !!"
-            android:title="Help"
+            android:title="Help|About"
             android:key="help" />
 
     <!--

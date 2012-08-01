@@ -6,8 +6,4 @@
           android:title="@string/menu_feedback"
           android:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/menu_about_app"
-          android:title="@string/menu_about_app"
-          android:showAsAction="ifRoom"/>
-
 </menu>

@@ -7,15 +7,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.android.phoneagent.R;
+import compatibility.actionbar.ActionBarHelper;
+import compatibility.actionbar.ActionBarPreferenceActivity;
 
-public class SettingsActivity extends PreferenceActivity
+public class SettingsActivity extends ActionBarPreferenceActivity
 {
+    private ActionBarHelper actionBarHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -56,6 +59,16 @@ public class SettingsActivity extends PreferenceActivity
     }
 
     @Override
+    protected void onPostCreate(Bundle savedInstanceState)
+    {
+        super.onPostCreate(savedInstanceState);
+        actionBarHelper = getActionBarHelper();
+        actionBarHelper.setDisplayHomeAsUpEnabled(true);
+        actionBarHelper.setDisplayShowHomeEnabled(false);
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
@@ -71,7 +84,9 @@ public class SettingsActivity extends PreferenceActivity
             case R.id.menu_feedback:
                 showFeedbackActivity();
                 return true;
-
+            case android.R.id.home:
+                startActivity(new Intent(this,ContactsActivity.class));
+                return true;
             default:
                 return false;
         }
