@@ -47,6 +47,8 @@ public class DeviceManager
             return deviceContactsList;
         }
 
+        deviceContactsList = new ArrayList<DeviceContact>();
+
         final Cursor cursor = mContext.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
 
         final int contactIdColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts._ID);

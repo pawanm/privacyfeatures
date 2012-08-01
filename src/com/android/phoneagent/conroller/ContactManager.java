@@ -1,7 +1,6 @@
 package com.android.phoneagent.conroller;
 
 import android.content.Context;
-import android.os.Looper;
 import com.android.phoneagent.database.DeviceContactStore;
 import com.android.phoneagent.device.DeviceManager;
 import com.android.phoneagent.entities.ContactState;
@@ -43,21 +42,18 @@ public class ContactManager
             {
                 try
                 {
-                    Iterator<DeviceContact> deviceContacts = deviceManager.getDeviceContacts(true).iterator();
-                    Looper.prepare();
+                    List<DeviceContact> deviceContacts = deviceManager.getDeviceContacts(true);
 
                     Logging.debug("contact store size: " + contactStore.getDeviceContacts().size());
                     Logging.debug("device contact size: " + deviceManager.getDeviceContacts(true).size());
 
-                    while (deviceContacts.hasNext())
+                    for(DeviceContact deviceContact: deviceContacts)
                     {
-                        DeviceContact deviceContact = deviceContacts.next();
                         if(!isContactExistsInStore(deviceContact))
                         {
                             contactStore.addContact(deviceContact);
                             Logging.debug("new contact added: " + deviceContact.getContactId() + "," +  deviceContact.getContactName());
                         }
-                        Looper.loop();
                     }
                     callBack.success("done");
                 }
