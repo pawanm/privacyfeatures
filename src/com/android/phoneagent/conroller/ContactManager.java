@@ -36,6 +36,19 @@ public class ContactManager
        return instance;
     }
 
+    public void updateContactList()
+    {
+       List<DeviceContact> contactList = deviceManager.getDeviceContacts(true);
+       for(DeviceContact contact: contactList)
+       {
+           if(!allContactsList.contains(contact))
+           {
+               allContactsList.add(contact);
+               updateContact(contact,ContactState.NORMAL);
+           }
+       }
+    }
+
     public List<DeviceContact> getAllContacts()
     {
         allContactsList = contactStore.getDeviceContacts();
@@ -43,7 +56,7 @@ public class ContactManager
         if (allContactsList.size() == 0)
         {
             Logging.debug("getting contacts from device");
-            allContactsList = deviceManager.getDeviceContacts();
+            allContactsList = deviceManager.getDeviceContacts(false);
             contactStore.saveDeviceContacts(allContactsList);
             Logging.debug("contacts saved: " + allContactsList.size());
         }

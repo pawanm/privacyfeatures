@@ -40,9 +40,9 @@ public class DeviceManager
         return mDeviceId;
     }
 
-    public List<DeviceContact> getDeviceContacts()
+    public List<DeviceContact> getDeviceContacts(boolean fetchFromDevice)
     {
-        if(deviceContactsList.size()>0)
+        if(deviceContactsList.size()>0 && fetchFromDevice==false)
         {
             return deviceContactsList;
         }
