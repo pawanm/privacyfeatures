@@ -21,16 +21,10 @@
             android:key="refresh_contact_list" />
 
     <EditTextPreference
-            android:name="feedback"
-            android:summary="Need a feature ? Have feedback ?"
-            android:title="Feedback"
-            android:key="feedback" />
-
-    <EditTextPreference
-            android:name="about_us"
-            android:summary="How it works ?"
-            android:title="About PhoneAgent"
-            android:key="about_us" />
+            android:name="help"
+            android:summary="How it works !!"
+            android:title="Help"
+            android:key="help" />
 
     <!--
     Reset/Favourite/Restrict all contacts

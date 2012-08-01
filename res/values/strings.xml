@@ -9,6 +9,7 @@
     <string name="menu_contact_preferences">Preferences</string>
     <string name="empty_contacts">No Contacts</string>
     <string name="menu_feedback">Feedback</string>
+    <string name="menu_about_app">About Phone Agent</string>
 
 
 </resources>
