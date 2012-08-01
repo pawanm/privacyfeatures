@@ -28,11 +28,8 @@ public class DeviceContactStore
     public synchronized void saveDeviceContacts(List<DeviceContact> deviceContacts)
     {
         Map<String, String> values = new HashMap<String, String>();
-        Iterator<DeviceContact> deviceContactIterator = deviceContacts.iterator();
-        while (deviceContactIterator.hasNext())
+        for(DeviceContact deviceContact: deviceContacts)
         {
-            DeviceContact deviceContact = deviceContactIterator.next();
-
             values.put(fields.ContactId.toString(), deviceContact.getContactId());
             values.put(fields.ContactName.toString(), deviceContact.getContactName());
             values.put(fields.ContactNo.toString(), deviceContact.getContactNumber());

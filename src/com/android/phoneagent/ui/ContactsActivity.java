@@ -85,8 +85,6 @@ public class ContactsActivity extends ActionBarActivity
         addOnClickListener();
 
         showProgressBar(true);
-
-        refreshList();
     }
 
     private void addOnClickListener()
