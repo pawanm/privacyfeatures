@@ -20,14 +20,15 @@
             android:title="Refresh Contact List"
             android:key="refresh_contact_list" />
 
-    <Preference
+   <!-- <Preference
             android:name="help"
             android:summary="About App and how it works !!"
             android:title="Help"
             android:key="help" />
-
+-->
     <!--
     Reset/Favourite/Restrict all contacts
+    Delete call logs of restricted contacts
     Refresh ContactList
     Call settings
         Mute/Vibrate restricted contacts(default mute)
@@ -38,7 +39,6 @@
             Vibrate/Mute (default mute)
             Delete messages(immediately, 1d, 7d, 30d, never)
             Consider as restricted when msg from unknown contact receives(default yes)
-    Feedback/About/Help
     -->
 </PreferenceScreen>
 

@@ -43,13 +43,12 @@ public class ContactManager
                 try
                 {
                     List<DeviceContact> deviceContacts = deviceManager.getDeviceContacts(true);
-
-                    Logging.debug("contact store size: " + contactStore.getDeviceContacts().size());
+                    List<DeviceContact> storeContacts = contactStore.getDeviceContacts();
+                    Logging.debug("contact store size: " + storeContacts.size());
                     Logging.debug("device contact size: " + deviceManager.getDeviceContacts(true).size());
-
                     for(DeviceContact deviceContact: deviceContacts)
                     {
-                        if(!isContactExistsInStore(deviceContact))
+                        if(!isContactExistsInStore(deviceContact,storeContacts))
                         {
                             contactStore.addContact(deviceContact);
                             Logging.debug("new contact added: " + deviceContact.getContactId() + "," +  deviceContact.getContactName());
@@ -67,10 +66,10 @@ public class ContactManager
         thread.start();
     }
 
-    private boolean isContactExistsInStore(DeviceContact deviceContact)
+    private boolean isContactExistsInStore(DeviceContact deviceContact, List<DeviceContact> storeContacts)
     {
         boolean flag=false;
-        for(DeviceContact storeContact: contactStore.getDeviceContacts())
+        for(DeviceContact storeContact: storeContacts)
         {
             if(storeContact.getContactNumber().equals(deviceContact.getContactNumber()))
             {
