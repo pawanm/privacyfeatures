@@ -222,13 +222,13 @@ public class ContactsActivity extends ActionBarActivity
         switch (state)
         {
             case FAVOURITELIST:
-                setTitle("Favourite");
+                actionBarHelper.setTitle("Favourite");
                 break;
             case RESTRICTEDLIST:
-                setTitle("Restricted");
+                actionBarHelper.setTitle("Restricted");
                 break;
             case ALLCONTACTS:
-                setTitle("AllContacts");
+                actionBarHelper.setTitle("AllContacts");
         }
     }
 
