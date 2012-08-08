@@ -22,7 +22,7 @@
 
     <Preference
             android:name="help_activity"
-            android:summary="How it works !!"
+            android:summary="Application salient features"
             android:title="Help"
             android:key="help_activity" />
 

@@ -32,6 +32,12 @@
         <item name="android:textColor">@color/button_text</item>
         <item name="android:textSize">15sp</item>
     </style>
+    <style name="help_item">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
     <style name="roster_item_name">
         <item name="android:textColor">@color/roster_item_name</item>
         <item name="android:textSize">18sp</item>
