@@ -33,10 +33,10 @@ public class CallListenerManager extends PhoneStateListener
     @Override
     public void onCallStateChanged (int state, String incomingNumber)
     {
-        boolean disable_app = PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean("settings_disable_app", false);
-        if(disable_app)
+        boolean settings_disable_app = PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean("settings_disable_app", false);
+
+        if(settings_disable_app)
         {
-            Logging.debug("returning");
             return;
         }
 

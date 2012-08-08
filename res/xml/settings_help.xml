@@ -10,10 +10,10 @@
             android:summary="Call logs of restricted contacts will be deleted"
             />
 
-    <Preference
+   <!-- <Preference
             android:summary="Phone will always vibrate if call received from favourite contact along with your existing ringtone"
             />
-
+-->
     <Preference
             android:summary="Messages from restricted contacts will be ??? Coming soon !!! :)"
             />

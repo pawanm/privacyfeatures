@@ -22,7 +22,6 @@ public class AudioStateManager
                 break;
             case FAVOURITE:
                 audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                audioManager.setMode(AudioManager.FLAG_VIBRATE);
                 break;
         }
     }
