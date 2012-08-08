@@ -146,12 +146,20 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
     private void showNotification()
     {
+        boolean settings_disable_app = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("settings_disable_app", false);
+        String notificationMsg = "... is active and running.";
+        if(settings_disable_app)
+        {
+            notificationMsg = "... is de-activated.";
+        }
+
+
         NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notification = new Notification(R.drawable.alert, "Phone Agent Is Running", System.currentTimeMillis());
+        Notification notification = new Notification(R.drawable.alert, notificationMsg, System.currentTimeMillis());
         notification.flags |= Notification.FLAG_NO_CLEAR;
 
         PendingIntent pi = PendingIntent.getActivity(this, 0, getIntent(), PendingIntent.FLAG_UPDATE_CURRENT);
-        notification.setLatestEventInfo(this, "PhoneAgent", "Phone Agent Is Running", pi);
+        notification.setLatestEventInfo(this, "PhoneAgent", notificationMsg, pi);
 
 
         notificationManager.notify(0, notification);

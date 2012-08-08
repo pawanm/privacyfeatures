@@ -20,12 +20,12 @@
             android:title="Refresh Contact List"
             android:key="refresh_contact_list" />
 
-   <!-- <Preference
+    <Preference
             android:name="help"
-            android:summary="About App and how it works !!"
+            android:summary="How it works !!"
             android:title="Help"
             android:key="help" />
--->
+
     <!--
     Reset/Favourite/Restrict all contacts
     Delete call logs of restricted contacts
