@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,12 +14,9 @@ import android.view.MenuItem;
 import com.android.phoneagent.R;
 import com.android.phoneagent.conroller.ContactManager;
 import com.android.phoneagent.listeners.ICallBack;
-import compatibility.actionbar.ActionBarHelper;
-import compatibility.actionbar.ActionBarPreferenceActivity;
 
-public class SettingsActivity extends ActionBarPreferenceActivity
+public class SettingsActivity extends PreferenceActivity
 {
-    private ActionBarHelper actionBarHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,10 +30,6 @@ public class SettingsActivity extends ActionBarPreferenceActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        actionBarHelper = getActionBarHelper();
-        actionBarHelper.setDisplayHomeAsUpEnabled(true);
-        actionBarHelper.setDisplayShowHomeEnabled(false);
-
     }
 
     @Override

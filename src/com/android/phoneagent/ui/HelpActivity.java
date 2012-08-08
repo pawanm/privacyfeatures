@@ -2,14 +2,12 @@ package com.android.phoneagent.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 import com.android.phoneagent.R;
-import compatibility.actionbar.ActionBarHelper;
-import compatibility.actionbar.ActionBarPreferenceActivity;
 
-public class HelpActivity extends ActionBarPreferenceActivity
+public class HelpActivity extends PreferenceActivity
 {
-    private ActionBarHelper actionBarHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,9 +20,6 @@ public class HelpActivity extends ActionBarPreferenceActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        actionBarHelper = getActionBarHelper();
-        actionBarHelper.setDisplayHomeAsUpEnabled(true);
-        actionBarHelper.setDisplayShowHomeEnabled(false);
     }
 
     @Override
