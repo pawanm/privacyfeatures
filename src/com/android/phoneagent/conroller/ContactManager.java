@@ -130,6 +130,32 @@ public class ContactManager
         return true;
     }
 
+    public ContactState getNumberStatus(String incomingNo)
+    {
+        List<DeviceContact> list = getRestrictedContactList();
+        if (contactExists(incomingNo, list))
+            return ContactState.RESTRICTED;
+
+        list = getFavouriteList();
+        if (contactExists(incomingNo, list))
+            return ContactState.FAVOURITE;
+
+        return ContactState.NORMAL;
+    }
+
+    private boolean contactExists(String incomingNo, List<DeviceContact> list)
+    {
+        for (DeviceContact contact : list)
+        {
+            Logging.debug(contact.getContactState() + ": " + contact.getContactNumber());
+            if (incomingNo.contains(contact.getContactLastDigitsFromNumber()))
+            {
+                return true;
+
+            }
+        }
+        return false;
+    }
     private List<DeviceContact> getSortedList(List<DeviceContact> contactList)
     {
         Collections.sort(contactList, comparator);
