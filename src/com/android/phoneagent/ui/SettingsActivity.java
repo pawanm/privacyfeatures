@@ -83,9 +83,23 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
     private void registerListeners()
     {
+        disableApplicationListener();
         appRunningNotificationListener();
         resetContactListener();
         startHelpActivityListener();
+    }
+
+    private void disableApplicationListener()
+    {
+        final Preference settings_disable_app = findPreference("settings_disable_app");
+        settings_disable_app.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
+        {
+            public boolean onPreferenceClick(Preference preference)
+            {
+                handleNotification();
+                return true;
+            }
+        });
     }
 
     private void appRunningNotificationListener()
@@ -95,20 +109,24 @@ public class SettingsActivity extends ActionBarPreferenceActivity
         {
             public boolean onPreferenceClick(Preference preference)
             {
-                boolean showNotification = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("settings_show_app_running_status", false);
-                if (showNotification)
-                {
-                    showNotification();
-                }
-                else
-                {
-                    NotificationManager notificationManager = (NotificationManager)
-                            getSystemService(NOTIFICATION_SERVICE);
-                    notificationManager.cancel(0);
-                }
+                handleNotification();
                 return true;
             }
         });
+    }
+
+    private void handleNotification()
+    {
+        boolean showNotification = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("settings_show_app_running_status", false);
+        if (showNotification)
+        {
+            showNotification();
+        }
+        else
+        {
+            NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.cancel(0);
+        }
     }
 
     private void resetContactListener()
@@ -129,20 +147,26 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
                     public void failure(String result)
                     {
-                        try
-                        {
-                            dismissDialog(0);
-                            showDialog(-1);
-                        }catch (Exception ex)
-                        {
-
-                        }
+                        showErrorDialog();
                     }
                 });
 
                 return true;
             }
         });
+    }
+
+    private void showErrorDialog()
+    {
+        try
+        {
+            dismissDialog(0);
+            showDialog(-1);
+        }
+        catch (Exception ex)
+        {
+
+        }
     }
 
     private void startHelpActivityListener()
