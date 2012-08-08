@@ -34,6 +34,7 @@
     </style>
     <style name="help_item">
         <item name="android:textSize">18sp</item>
+        <item name="android:baselineAlignBottom">true</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>

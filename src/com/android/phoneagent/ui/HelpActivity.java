@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.android.phoneagent.R;
-import compatibility.actionbar.ActionBarActivity;
 import compatibility.actionbar.ActionBarHelper;
+import compatibility.actionbar.ActionBarPreferenceActivity;
 
-public class HelpActivity extends ActionBarActivity
+public class HelpActivity extends ActionBarPreferenceActivity
 {
     private ActionBarHelper actionBarHelper;
 
@@ -15,7 +15,7 @@ public class HelpActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
+        addPreferencesFromResource(R.xml.settings_help);
     }
 
     @Override

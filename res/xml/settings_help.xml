@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+            android:summary="All calls from restricted contacts will receive silently"
+            />
+
+    <Preference
+            android:summary="Call logs of restricted contacts will be deleted"
+            />
+
+    <Preference
+            android:summary="Phone will always vibrate if call received from favourite contact along with your existing ringtone"
+            />
+
+    <Preference
+            android:summary="Messages from restricted contacts will be ??? Coming soon !!! :)"
+            />
+
+</PreferenceScreen>
+
