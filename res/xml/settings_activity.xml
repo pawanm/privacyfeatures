@@ -21,10 +21,10 @@
             android:key="refresh_contact_list" />
 
     <Preference
-            android:name="help"
+            android:name="help_activity"
             android:summary="How it works !!"
             android:title="Help"
-            android:key="help" />
+            android:key="help_activity" />
 
     <!--
     Reset/Favourite/Restrict all contacts

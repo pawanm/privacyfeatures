@@ -85,6 +85,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
     {
         appRunningNotificationListener();
         resetContactListener();
+        startHelpActivityListener();
     }
 
     private void appRunningNotificationListener()
@@ -139,6 +140,19 @@ public class SettingsActivity extends ActionBarPreferenceActivity
                     }
                 });
 
+                return true;
+            }
+        });
+    }
+
+    private void startHelpActivityListener()
+    {
+        final Preference app_running_status = findPreference("help_activity");
+        app_running_status.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
+        {
+            public boolean onPreferenceClick(Preference preference)
+            {
+                startActivity(new Intent(getApplicationContext(),HelpActivity.class));
                 return true;
             }
         });
