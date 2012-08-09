@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import com.android.phoneagent.R;
@@ -42,21 +40,10 @@ public class SettingsActivity extends ActionBarPreferenceActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.settings_activity_menu, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch (item.getItemId())
         {
-            case R.id.menu_feedback:
-                showFeedbackActivity();
-                return true;
             case android.R.id.home:
                 startActivity(new Intent(this, ContactsActivity.class));
                 return true;
@@ -90,6 +77,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
         appRunningNotificationListener();
         resetContactListener();
         startHelpActivityListener();
+        startFeedbackActivityListener();
     }
 
     private void disableApplicationListener()
@@ -180,6 +168,19 @@ public class SettingsActivity extends ActionBarPreferenceActivity
             public boolean onPreferenceClick(Preference preference)
             {
                 startActivity(new Intent(getApplicationContext(),HelpActivity.class));
+                return true;
+            }
+        });
+    }
+
+    private void startFeedbackActivityListener()
+    {
+        final Preference feedback_activity = findPreference("feedback_activity");
+        feedback_activity.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
+        {
+            public boolean onPreferenceClick(Preference preference)
+            {
+                showFeedbackActivity();
                 return true;
             }
         });

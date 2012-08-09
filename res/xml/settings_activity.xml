@@ -16,7 +16,7 @@
 
     <Preference
             android:name="refresh_contact_list"
-            android:summary="Click here to refresh contact list"
+            android:summary="This will synchronize your contact list with phone book"
             android:title="Refresh Contact List"
             android:key="refresh_contact_list" />
 
@@ -25,6 +25,12 @@
             android:summary="Application salient features"
             android:title="Help"
             android:key="help_activity" />
+
+    <Preference
+            android:name="feedback_activity"
+            android:summary="Have a word, please share with us"
+            android:title="Feedback"
+            android:key="feedback_activity" />
 
     <!--
     Reset/Favourite/Restrict all contacts
