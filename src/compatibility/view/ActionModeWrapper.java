@@ -1,9 +1,11 @@
 package compatibility.view;
 
+import android.annotation.TargetApi;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 
+@TargetApi(15)
 public class ActionModeWrapper
 {
     private ActionMode mActionModeIcs;

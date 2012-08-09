@@ -3,12 +3,12 @@ package compatibility.actionbar;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.view.*;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.android.phoneagent.R;
-import com.android.phoneagent.utils.Utils;
 import compatibility.view.ActionBarView;
 import compatibility.view.ActionModeCompat;
 import compatibility.view.ActionModeWrapper;
@@ -33,7 +33,10 @@ public class ActionBarGingerbread extends ActionBarHelper
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        mActivity.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        if(!(mActivity instanceof PreferenceActivity))
+        {
+            mActivity.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        }
     }
 
     @Override
@@ -42,13 +45,11 @@ public class ActionBarGingerbread extends ActionBarHelper
         mActivity.getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.action_bar_view);
         mActionBarView = new ActionBarView(mActivity, mActivity.findViewById(R.id.action_bar_normal_view));
         setupMenuItemsOnActionBar();
-        Utils.overrideFontToRobotoBold(mActivity.findViewById(R.layout.action_bar_view));
     }
 
     @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu)
+    public boolean onCreateOptionsMenu(Menu menu)
     {
-
         for (Integer id : mActionItemIds)
         {
             menu.findItem(id).setVisible(false);
@@ -111,7 +112,7 @@ public class ActionBarGingerbread extends ActionBarHelper
     }
 
     @Override
-    public void startActionMode(ActionModeWrapper.Callback actionModeCallback)
+    public ActionModeWrapper startActionMode(ActionModeWrapper.Callback actionModeCallback)
     {
         mActivity.findViewById(R.id.action_bar_normal_view).setVisibility(View.GONE);
         View cabView = mActivity.findViewById(R.id.action_bar_action_view);
@@ -120,14 +121,24 @@ public class ActionBarGingerbread extends ActionBarHelper
         MenuCompat menuItems = new MenuCompat(mActivity);
         ActionModeWrapper actionModeWrapper = new ActionModeWrapper(new ActionModeCompat(cabView));
         mActionModeCallback.onCreateActionMode(actionModeWrapper, menuItems);
+        return actionModeWrapper;
     }
 
     public MenuInflater getMenuInflater(MenuInflater superMenuInflater)
     {
-        return new SimpleMenuInflator(mActivity, superMenuInflater, mActionItemIds, mAnimationItemIds);
+        OnInflate callback = new OnInflate()
+        {
+            public void onInflate(Set<Integer> actionItemIds, Set<Integer> animationItemIds)
+            {
+                mActionItemIds = actionItemIds;
+                mAnimationItemIds = animationItemIds;
+            }
+        };
+        return new SimpleMenuInflator(mActivity, superMenuInflater, callback);
+
     }
 
-    private void addMenuItemToActionBar(final android.view.MenuItem item)
+    private void addMenuItemToActionBar(final MenuItem item)
     {
         View menuItemView = createMenuItemView(item);
         menuItemView.setId(item.getItemId());
@@ -135,7 +146,7 @@ public class ActionBarGingerbread extends ActionBarHelper
                 LinearLayout.LayoutParams.MATCH_PARENT);
         menuItemView.setLayoutParams(layoutParams);
         menuItemView.setPadding(12, 0, 12, 0);
-        menuItemView.setBackgroundResource(R.drawable.action_bar_item_background_selector);
+        menuItemView.setBackgroundResource(R.drawable.ics_blue_background_selector);
         menuItemView.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View view)
@@ -146,22 +157,21 @@ public class ActionBarGingerbread extends ActionBarHelper
         mActionBarView.addMenuItem(menuItemView);
     }
 
-    private View createMenuItemView(android.view.MenuItem item)
+    private View createMenuItemView(MenuItem item)
     {
         if (item.getIcon() != null)
         {
-            ImageButton actionButton = new ImageButton(mActivity, null, R.attr.actionbarCompatItemStyle);
+            ImageButton actionButton = new ImageButton(mActivity);
             actionButton.setImageDrawable(item.getIcon());
             return actionButton;
         }
         else
         {
-            TextView actionButtonText = new TextView(mActivity, null, R.attr.actionbarCompatTitleStyle);
+            TextView actionButtonText = new TextView(mActivity);
             actionButtonText.setText(item.getTitle());
             actionButtonText.setGravity(Gravity.CENTER_VERTICAL);
             return actionButtonText;
         }
-
     }
 
     private void setupMenuItemsOnActionBar()
@@ -171,7 +181,7 @@ public class ActionBarGingerbread extends ActionBarHelper
         mActivity.onPrepareOptionsMenu(menu);
         for (int i = 0; i < menu.size(); i++)
         {
-            android.view.MenuItem item = menu.getItem(i);
+            MenuItem item = menu.getItem(i);
             if (mActionItemIds.contains(item.getItemId()))
             {
                 addMenuItemToActionBar(item);

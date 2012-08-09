@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import compatibility.view.ActionModeWrapper;
+
 
 public abstract class ActionBarHelper
 {
@@ -22,11 +22,11 @@ public abstract class ActionBarHelper
         }
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
         {
-            return new ActionBarHoneycomb(activity);
+            return new compatibility.actionbar.ActionBarHoneycomb(activity);
         }
         else
         {
-            return new ActionBarGingerbread(activity);
+            return new compatibility.actionbar.ActionBarGingerbread(activity);
         }
     }
 
@@ -71,7 +71,7 @@ public abstract class ActionBarHelper
 
     public abstract void setIcon(int resId);
 
-    public abstract void startActionMode(ActionModeWrapper.Callback actionModeCallback);
+    public abstract ActionModeWrapper startActionMode(ActionModeWrapper.Callback actionModeCallback);
 
 
 }

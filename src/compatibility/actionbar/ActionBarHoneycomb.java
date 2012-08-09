@@ -1,5 +1,6 @@
 package compatibility.actionbar;
 
+import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import compatibility.view.ActionModeWrapper;
 
+@TargetApi(15)
 public class ActionBarHoneycomb extends ActionBarHelper
 {
     private ActionBar actionBar;
@@ -97,8 +99,9 @@ public class ActionBarHoneycomb extends ActionBarHelper
     }
 
     @Override
-    public void startActionMode(ActionModeWrapper.Callback actionModeCallback)
+    public ActionModeWrapper startActionMode(ActionModeWrapper.Callback actionModeCallback)
     {
+        return null;
     }
 
     protected Context getActionBarThemedContext()

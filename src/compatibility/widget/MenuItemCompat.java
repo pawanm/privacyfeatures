@@ -1,10 +1,12 @@
 package compatibility.widget;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.*;
 
+@TargetApi(15)
 public class MenuItemCompat implements MenuItem
 {
 

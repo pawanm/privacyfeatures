@@ -13,10 +13,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.android.phoneagent.R;
+import com.android.phoneagent.utils.Logging;
 import compatibility.widget.MenuCompat;
 import compatibility.widget.MenuItemCompat;
-import com.android.phoneagent.R;
-
 
 import java.util.Set;
 
@@ -138,7 +138,7 @@ public class ActionBarView
         }
         catch (PackageManager.NameNotFoundException ex)
         {
-
+            Logging.debug("Icon not found: " + name.getClassName());
         }
         return null;
     }
@@ -148,7 +148,8 @@ public class ActionBarView
         ViewGroup decorView = (ViewGroup) mActivity.getWindow().getDecorView();
         LinearLayout root = (LinearLayout) decorView.getChildAt(0);
         FrameLayout frameLayout = (FrameLayout) root.getChildAt(0);
-        frameLayout.setBackgroundResource(R.drawable.action_bar_background);
+        frameLayout.setBackgroundColor(mActivity.getResources().getColor(R.color.action_bar_background));
+        
 
         Drawable icon = getActivityIcon();
         if (icon == null)

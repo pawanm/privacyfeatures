@@ -10,6 +10,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 public class SimpleMenuInflator extends MenuInflater
@@ -20,17 +21,14 @@ public class SimpleMenuInflator extends MenuInflater
     private static final String MENU_ATTR_ANIMATION = "animation";
     private MenuInflater mInflater;
     private Context mActivity;
-    private Set<Integer> mActionItemIds;
-    private Set<Integer> mAnimationItemIds;
+    private OnInflate mCallback;
 
-
-    public SimpleMenuInflator(Context context, MenuInflater inflater, Set<Integer> actionItemIds, Set<Integer> animationItemIds)
+    public SimpleMenuInflator(Context context, MenuInflater inflater, OnInflate callback)
     {
         super(context);
         mInflater = inflater;
         mActivity = context;
-        mActionItemIds = actionItemIds;
-        mAnimationItemIds = animationItemIds;
+        mCallback = callback;
     }
 
     @Override
@@ -42,6 +40,8 @@ public class SimpleMenuInflator extends MenuInflater
 
     private void loadActionBarMetadata(int menuResId)
     {
+        Set<Integer> actionItemIds = new HashSet<Integer>();
+        Set<Integer> animationItemIds = new HashSet<Integer>();
         XmlResourceParser parser = null;
         try
         {
@@ -71,12 +71,12 @@ public class SimpleMenuInflator extends MenuInflater
                         showAsAction = parser.getAttributeIntValue(MENU_RES_NAMESPACE, MENU_ATTR_SHOW_AS_ACTION, -1);
                         if (showAsAction != -1 && (showAsAction & MenuItem.SHOW_AS_ACTION_ALWAYS) == MenuItem.SHOW_AS_ACTION_ALWAYS)
                         {
-                            mActionItemIds.add(itemId);
+                            actionItemIds.add(itemId);
                         }
 
                         if (parser.getAttributeBooleanValue(null, MENU_ATTR_ANIMATION, false))
                         {
-                            mAnimationItemIds.add(itemId);
+                            animationItemIds.add(itemId);
                         }
                         break;
 
@@ -104,6 +104,8 @@ public class SimpleMenuInflator extends MenuInflater
                 parser.close();
             }
         }
+
+        mCallback.onInflate(actionItemIds, animationItemIds);
     }
 
 }

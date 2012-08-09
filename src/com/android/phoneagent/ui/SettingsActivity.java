@@ -6,21 +6,26 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
 import com.android.phoneagent.R;
 import com.android.phoneagent.conroller.ContactManager;
 import com.android.phoneagent.listeners.ICallBack;
+import compatibility.actionbar.ActionBarHelper;
+import compatibility.actionbar.ActionBarPreferenceActivity;
 
-public class SettingsActivity extends PreferenceActivity
+public class SettingsActivity extends ActionBarPreferenceActivity
 {
 
+    ActionBarHelper mActionBarHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        mActionBarHelper = getActionBarHelper();
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings_activity);
         registerListeners();
@@ -30,6 +35,10 @@ public class SettingsActivity extends PreferenceActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
+        mActionBarHelper = getActionBarHelper();
+        mActionBarHelper.setDisplayHomeAsUpEnabled(true);
+        mActionBarHelper.setDisplayShowHomeEnabled(false);
+
     }
 
     @Override

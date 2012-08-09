@@ -4,13 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TabHost;
 
-/**
- * Created by IntelliJ IDEA.
- * User: pawan
- * Date: 2/15/12
- * Time: 4:34 PM
- * To change this template use File | Settings | File Templates.
- */
 public class TabFactory implements TabHost.TabContentFactory
 {
 

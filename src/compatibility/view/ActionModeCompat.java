@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.TextView;
 import com.android.phoneagent.R;
 
-
 public class ActionModeCompat
 {
     private View mActionModeView;
