@@ -10,7 +10,7 @@ import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.Window;
 import com.android.phoneagent.R;
-import com.android.phoneagent.conroller.ContactManager;
+import com.android.phoneagent.controller.ContactManager;
 import com.android.phoneagent.listeners.ICallBack;
 import compatibility.actionbar.ActionBarHelper;
 import compatibility.actionbar.ActionBarPreferenceActivity;
@@ -19,11 +19,15 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 {
 
     ActionBarHelper mActionBarHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         mActionBarHelper = getActionBarHelper();
-        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        if (!mActionBarHelper.isIcs())
+        {
+            requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        }
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings_activity);
         registerListeners();
@@ -58,7 +62,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
         dialog.setTitle("Refreshing ...");
         dialog.setCancelable(false);
         dialog.setMessage("Please wait while synchronizing your contact list");
-        if(id==-1)
+        if (id == -1)
         {
             dialog.setButton("Close", new DialogInterface.OnClickListener()
             {
@@ -112,10 +116,9 @@ public class SettingsActivity extends ActionBarPreferenceActivity
         if (showNotification)
         {
             showNotification();
-        }
-        else
+        } else
         {
-            NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             notificationManager.cancel(0);
         }
     }
@@ -153,8 +156,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
         {
             dismissDialog(0);
             showDialog(-1);
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
 
         }
@@ -167,7 +169,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
         {
             public boolean onPreferenceClick(Preference preference)
             {
-                startActivity(new Intent(getApplicationContext(),HelpActivity.class));
+                startActivity(new Intent(getApplicationContext(), HelpActivity.class));
                 return true;
             }
         });
@@ -190,7 +192,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
     {
         boolean settings_disable_app = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("settings_disable_app", false);
         String notificationMsg = "... is active and running.";
-        if(settings_disable_app)
+        if (settings_disable_app)
         {
             notificationMsg = "... is de-activated.";
         }

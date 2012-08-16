@@ -30,5 +30,11 @@
         <activity android:name=".ui.SettingsActivity" android:label="@string/app_name" android:screenOrientation="portrait" android:launchMode="singleTask"/>
         <activity android:name=".ui.HelpActivity" android:label="@string/app_name" android:screenOrientation="portrait" android:launchMode="singleTask"/>
 
+        <receiver android:name=".controller.MessageListenerManager" android:permission="android.permission.RECEIVE_SMS">
+            <intent-filter android:priority="1000">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 </manifest> 

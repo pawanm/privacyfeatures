@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import com.android.phoneagent.R;
 import com.android.phoneagent.adapters.ContactsAdapter;
-import com.android.phoneagent.conroller.ContactManager;
+import com.android.phoneagent.controller.ContactManager;
 import com.android.phoneagent.entities.ContactState;
 import com.android.phoneagent.entities.DeviceContact;
 import com.android.phoneagent.factory.AppFactory;
