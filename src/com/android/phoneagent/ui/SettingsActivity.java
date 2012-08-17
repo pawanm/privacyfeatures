@@ -6,10 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.Window;
 import com.android.phoneagent.R;
+import com.android.phoneagent.config.AppSettings;
 import com.android.phoneagent.controller.ContactManager;
 import com.android.phoneagent.listeners.ICallBack;
 import compatibility.actionbar.ActionBarHelper;
@@ -19,6 +19,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 {
 
     ActionBarHelper mActionBarHelper;
+    AppSettings appSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,6 +32,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings_activity);
         registerListeners();
+        appSettings = new AppSettings(this);
     }
 
     @Override
@@ -86,7 +88,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
     private void disableApplicationListener()
     {
-        final Preference settings_disable_app = findPreference("settings_disable_app");
+        final Preference settings_disable_app = findPreference(AppSettings.DISABLE_APP_PREFERENCE);
         settings_disable_app.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
         {
             public boolean onPreferenceClick(Preference preference)
@@ -99,7 +101,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
     private void appRunningNotificationListener()
     {
-        final Preference app_running_status = findPreference("settings_show_app_running_status");
+        final Preference app_running_status = findPreference(AppSettings.APP_RUNNING_PREFERENCE);
         app_running_status.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
         {
             public boolean onPreferenceClick(Preference preference)
@@ -112,11 +114,11 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
     private void handleNotification()
     {
-        boolean showNotification = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("settings_show_app_running_status", false);
-        if (showNotification)
+        if (appSettings.showAppRunningStatus())
         {
             showNotification();
-        } else
+        }
+        else
         {
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             notificationManager.cancel(0);
@@ -125,7 +127,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
     private void resetContactListener()
     {
-        final Preference refresh_contact_list = findPreference("refresh_contact_list");
+        final Preference refresh_contact_list = findPreference(AppSettings.REFRESH_ACTIVITY_PREFERENCE);
         refresh_contact_list.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
         {
             public boolean onPreferenceClick(Preference preference)
@@ -164,7 +166,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
     private void startHelpActivityListener()
     {
-        final Preference app_running_status = findPreference("help_activity");
+        final Preference app_running_status = findPreference(AppSettings.HELP_ACTIVITY_PREFERENCE);
         app_running_status.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
         {
             public boolean onPreferenceClick(Preference preference)
@@ -177,7 +179,7 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
     private void startFeedbackActivityListener()
     {
-        final Preference feedback_activity = findPreference("feedback_activity");
+        final Preference feedback_activity = findPreference(AppSettings.FEEDBACK_ACTIVITY_PREFERENCE);
         feedback_activity.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
         {
             public boolean onPreferenceClick(Preference preference)
@@ -190,9 +192,9 @@ public class SettingsActivity extends ActionBarPreferenceActivity
 
     private void showNotification()
     {
-        boolean settings_disable_app = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("settings_disable_app", false);
         String notificationMsg = "... is active and running.";
-        if (settings_disable_app)
+
+        if (appSettings.disableAppStatus())
         {
             notificationMsg = "... is de-activated.";
         }
